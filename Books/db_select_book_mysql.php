@@ -6,7 +6,7 @@ if (isset($_POST['select_book'])) {
 
     $selectBook = "SELECT * FROM book 
             INNER JOIN copy_book ON book_id = originalBook_id
-            WHERE title = '$_POST[book_search]' AND available = 1
+            WHERE title = '$_POST[book_search]' AND available = 1 AND reserved = 0
             ORDER BY author";
 
 
@@ -38,7 +38,7 @@ if (isset($_POST['select_book'])) {
                 <input type='hidden' id='idCopybook' name='idCopyBook' value='$book[id_copyBook]'>
                 <input type='submit' name = 'Delete' value='Delete'>
             </form>
-            <form name='libro' method='POST' action='form_reserve_book'>
+            <form name='libro' method='POST' action='../Reservations/reserve.php'>
                 <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
                 <input type='hidden' id='idCopybook' name='idCopyBook' value='$book[id_copyBook]'>
                 <input type='submit' name='Reservation' value='Reservation'>

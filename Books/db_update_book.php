@@ -9,15 +9,12 @@ if (isset($_POST['update_book'])) {
     $varCategory = mysqli_real_escape_string($conn, $_POST['category']);
     $varLanguage = mysqli_real_escape_string($conn, $_POST['language']);
 
+    $varIdBook = mysqli_real_escape_string($conn, $_POST['idBook']);
     
-
-    $sqlSelectIdBook = "SELECT book_id FROM book WHERE title = '$varTitleBook'";
-    $idBook = mysqli_fetch_assoc(mysqli_query($conn, $sqlSelectIdBook));
-
     $sqlSelectIdCopyBook = "SELECT id_copyBook FROM copy_book 
-    WHERE OriginalBook_id = '$idBook[book_id]' AND languages = '$varLanguage'";
+    WHERE originalBook_id = '$varIdBook' AND languages = '$varLanguage'";
      $idCopyBook = mysqli_fetch_assoc(mysqli_query($conn, $sqlSelectIdCopyBook));
-
+    
     echo $idCopyBook['id_copyBook'];
 
     $UpdateBook = "UPDATE book
@@ -26,7 +23,7 @@ if (isset($_POST['update_book'])) {
          editorial = '$varEditorial',
          theme = '$varTheme',
          category = '$varCategory'
-         WHERE book_id = '$idBook[book_id]'";
+         WHERE book_id = '$varIdBook'";
          
     if (!$conn->query($UpdateBook)) {
         echo '<br>Update Book error: ' . mysqli_error($conn);

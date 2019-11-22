@@ -15,7 +15,8 @@ create table members(
     coutry          varchar(25),
     adress          varchar(25),
     postalNumber    int(5),
-    city            varchar(25)
+    city            varchar(25),
+    librarian		boolean
 );
 
 create table book(
@@ -34,27 +35,27 @@ create table book(
         on delete no action on update cascade
 );
 
-create table reservation(
-    book_id         int,
-    member_id       int,
-    date_at         datetime default current_timestamp,
-    date_end        datetime,
-    real_date_end   datetime,
-    primary key(book_id,member_id,date_at),
-    foreign key (book_id) references book (book_id)
-		on delete no action on update cascade,
-    foreign key(member_id) references members(member_id)
-        on delete no action on update cascade
-);
-
 create table copy_book(
     id_copyBook     		int auto_increment primary key,
     originalBook_id         int,
     languages       		varchar(25),
     addBookDate				datetime default current_timestamp,
-    reserved        		boolean,
-    available       		boolean,
+    reserved        		boolean default 0,
+    available       		boolean default 1,
     foreign key (OriginalBook_id) references book (book_id)
+        on delete no action on update cascade
+);
+
+create table reservation(
+    Copybook_id         int,
+    member_id       int,
+    date_at         datetime default current_timestamp,
+    date_end        datetime,
+    real_date_end   datetime,
+    primary key(Copybook_id,member_id,date_at),
+    foreign key (Copybook_id) references copy_book (id_copyBook)
+		on delete no action on update cascade,
+    foreign key(member_id) references members(member_id)
         on delete no action on update cascade
 );
 

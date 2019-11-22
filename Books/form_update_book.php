@@ -15,6 +15,7 @@ if (isset($_POST['Update'])) {
             <fieldset>
                 <label for='title'>Title:</label>
                 <input type='text' name='title' id='title' value=<?php echo $book['title'] ?>>
+                <input type="hidden" name="idBook" id="idBook" value=<?php echo $book['book_id'] ?>>
                 <br><br>
 
                 <label for='author'>Author:</label>
