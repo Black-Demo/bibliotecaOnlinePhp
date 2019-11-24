@@ -29,10 +29,7 @@ create table book(
     theme           varchar(45),
     category        varchar(45),
     FirtsAddBookDate     datetime default current_timestamp,
-    quantity        int,
-    location        int,
-    foreign key (location) references location (location_id) 
-        on delete no action on update cascade
+    quantity        int
 );
 
 create table copy_book(
