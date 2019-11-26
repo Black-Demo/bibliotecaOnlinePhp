@@ -34,4 +34,5 @@
         <label for="city">City: </label>
         <input type="text" name="city" id="city">
     </fieldset>
+    <input type='submit' value='log in' name='insert_member'>
 </form>

@@ -29,18 +29,17 @@ if (isset($_POST['select_book'])) {
         echo '<br>';
         echo "
             <form name='libro' method='POST' action='form_update_book.php'>
-                <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
-                <input type='hidden' id='idCopybook' name='idCopyBook' value='$book[id_copyBook]'>
+                <input type='hidden' id='idBook' name='idBook' value=$book[book_id]>
+                <input type='hidden' id='idCopybook' name='idCopyBook' value=$book[id_copyBook]>
                 <input type='submit' name='Update' value='Update'>
             </form>
             <form name='libro' method='POST' action='db_delete_book.php'>
-                <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
-                <input type='hidden' id='idCopybook' name='idCopyBook' value='$book[id_copyBook]'>
+                <input type='hidden' id='idBook' name='idBook' value=$book[book_id]>
+                <input type='hidden' id='idCopybook' name='idCopyBook' value=$book[id_copyBook]>
                 <input type='submit' name = 'Delete' value='Delete'>
             </form>
             <form name='libro' method='POST' action='../Reservations/reserve.php'>
-                <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
-                <input type='hidden' id='idCopybook' name='idCopyBook' value='$book[id_copyBook]'>
+                <input type='hidden' id='idCopybook' name='idCopyBook' value=$book[id_copyBook]>
                 <input type='submit' name='Reservation' value='Reservation'>
             </form>
         ";
