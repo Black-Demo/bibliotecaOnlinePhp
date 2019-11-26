@@ -1,6 +1,7 @@
 <?php
 include '../conection.php';
 if (isset($_POST['Reservation'])) {
+
     $varCopyIdBook = mysqli_real_escape_string($conn, $_POST['idCopyBook']);
 
     $sqlInsertReserve =  "INSERT INTO reservation(
@@ -22,8 +23,8 @@ if (isset($_POST['Reservation'])) {
     set date_end = $dateEndReserve[dateEnd]
     where Copybook_id = $varCopyIdBook";
 
-if (!$conn->query($sqlInsertReserveNew)) {
-    echo '<br>cosa Book error: ' . mysqli_error($conn);
-}
+    if (!$conn->query($sqlInsertReserveNew)) {
+        echo '<br>cosa Book error: ' . mysqli_error($conn);
+    }
 }
 ?>

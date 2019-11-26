@@ -1,4 +1,4 @@
-
+create database testcard;
 use testcard;
 CREATE TABLE customers (
  id int(11) NOT NULL AUTO_INCREMENT,

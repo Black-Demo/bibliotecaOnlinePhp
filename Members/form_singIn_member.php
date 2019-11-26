@@ -1,4 +1,4 @@
-<form action="#" method='POST'>
+<form action="db_singIn_memeber.php" method='POST'>
 <fieldset>
         <label for="email">Email: </label>
         <input type="email" name="email" id="email">
