@@ -12,10 +12,7 @@ create table members(
     password_user   varchar(25),
     dni				varchar(25),
     phone           int(9),
-    coutry          varchar(25),
-    adress          varchar(25),
     postalNumber    int(5),
-    city            varchar(25),
     librarian		boolean
 );
 
