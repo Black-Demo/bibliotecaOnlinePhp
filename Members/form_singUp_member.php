@@ -1,3 +1,14 @@
+<?php
+    if(isset($_GET['error'])){
+        if($_GET['error']=="emptyfileds"){
+            echo '<p class="singError">Fill in all fields!</p>';
+        }
+        //else if(//El resto de errores)
+            
+        }else if($_GET['login']=="sucess"){
+            echo '<p class="sucessLogin">SUCCESS</p>';
+        }
+?>
 <form action="db_singUp_member.php" method='POST'>
 <fieldset>
         <input type="email" name="email" id="email" placeholder="email">
