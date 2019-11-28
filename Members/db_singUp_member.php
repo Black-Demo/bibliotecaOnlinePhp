@@ -14,17 +14,17 @@
         if(empty($varEmail) || empty($varPassw) || empty($varPasswRe)
             || empty($varName) || empty($varLastname1) || empty($varLastname2)
             || empty($varDNI) || empty($varPhone) || empty($varNumPostal)){
-                header("Location: form_singUp_member.php?error=emptyfield&email=".$varEmail."&name=".$varName."&lastname1=".$varLastname1.
+                header("Location: ../form_singUp_member.php?error=emptyfield&email=".$varEmail."&name=".$varName."&lastname1=".$varLastname1.
                 "&lastname2=".$varLastname2."&dni=".$varDNI."&phone=".$varPhone.
                 "&numPostal=".$varNumPostal);
             exit();
         }else if(!filter_var($varEmail, FILTER_VALIDATE_EMAIL)){
-            header("Location: form_singUp_member.php?error=errorEmial&name=".$varName."&lastname1=".$varLastname1.
+            header("Location: ../form_singUp_member.php?error=errorEmial&name=".$varName."&lastname1=".$varLastname1.
                 "&lastname2=".$varLastname2."&dni=".$varDNI."&phone=".$varPhone.
                 "&numPostal=".$varNumPostal);
             exit();
         }else if($varPassw !== $varPasswRe){
-            header("Location: form_singUp_member.php?error=passwordcheckd&email=".$varEmail."&name=".$varName."&lastname1=".$varLastname1.
+            header("Location: ../form_singUp_member.php?error=passwordcheckd&email=".$varEmail."&name=".$varName."&lastname1=".$varLastname1.
                 "&lastname2=".$varLastname2."&dni=".$varDNI."&phone=".$varPhone.
                 "&numPostal=".$varNumPostal);
             exit();
@@ -42,14 +42,14 @@
             
             $stmt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($stmt,$sqlInsertMember)){
-                header("Location: form_singUp_member.php?error=sqlError");
+                header("Location: ../form_singUp_member.php?error=sqlError");
             }else{
                 $hashPwd = password_hash($varPassw, PASSWORD_DEFAULT);
                 mysqli_stmt_bind_param($stmt,"ssssssss",
                  $varName,$varLastname1,$varLastname2,$varEmail,$hashPwd,$varDNI,$varPhone,$varNumPostal);
                 
                 mysqli_stmt_execute($stmt);
-                header("Location: form_singUp_member.php?sigUp=success");
+                header("Location: ../form_singUp_member.php?sigUp=success");
                 exit();
             }
         }
@@ -57,6 +57,6 @@
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
     }else{
-        header("Location: form_singUp_member.php");
+        header("Location: ../form_singUp_member.php");
         exit();
     }

@@ -9,11 +9,11 @@ create table members(
     lastname1       varchar(25),
     lastname2       varchar(25),
     e_mail          varchar(25),
-    password_user   varchar(25),
+    password_user   varchar(255),
     dni				varchar(25),
     phone           int(9),
     postalNumber    int(5),
-    librarian		boolean
+    librarian		boolean default 0
 );
 
 create table book(

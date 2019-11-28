@@ -1,16 +1,16 @@
 <?php
     require '../conection.php';
-    if(isset($_POST['logIn'])){
-        $varEmailUid = mysqli_real_escape_string($conn,$_POST['email']);
-        $varPwd = mysqli_real_escape_string($conn,$_POST['passw']);
+    if(isset($_POST['login-submit'])){
+        $varEmailUid = mysqli_real_escape_string($conn,$_POST['mailuid']);
+        $varPwd = mysqli_real_escape_string($conn,$_POST['pwd']);
         if(empty($varEmailUid) || empty($varPwd)){
-            header("Location: form_singIn_member.php?error=emptyfileds");
+            header("Location: ../index.php?error=emptyfileds");
             exit();
         }else{
-            $selectMember = "SELECT * FROM members WHERE e_mail = ?";
+            $selectMember = "SELECT * FROM members WHERE e_mail = ?;";
             $stmt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($stmt,$selectMember)){
-                header("Location: form_singIn_member.php?error=sqlError");
+                header("Location: ../index.php?error=sqlError");
                 exit();
             }else{
                 mysqli_stmt_bind_param($stmt,"s",$varEmailUid);
@@ -19,30 +19,30 @@
                 if ($row = mysqli_fetch_assoc($result)){
                     $pwdCheck = password_verify($varPwd, $row['password_user']);
                     
-                    if($pwdCheck == FALSE){
-                        header("Location: form_singIn_member.php?error=wrongPwd");
+                    if(!$pwdCheck){
+                        header("Location: ../index.php?error=wrongPwd".$row['password_user']."-".$varPwd);
                         exit();
-                    }else if($pwdCheck == TRUE){
+                    }else if($pwdCheck){
                         session_start();
                         $_SESSION['userId'] = $row['member_id'];
                         $_SESSION['userDni'] = $row['dni'];
                         $_SESSION['librarian'] = $row['librarian'];
 
-                        header("Location: ../indexHomePage.php?login=success");
+                        header("Location: ../index.php?login=success");
                         exit();
                     }else{
-                        header("Location: form_singIn_member.php?error=wrongPwdWHY");
+                        header("Location: ../index.php?error=wrongPwdWHY");
                         exit();
                     }
                 }else{
-                    header("Location: form_singIn_member.php?error=noUser");
+                    header("Location: ../index.php?error=noUser");
                     exit();
                 }
 
             }
         }
     }else{
-        header("Location: form_singIn_member.php");
+        header("Location: ../index.php");
          exit();
     }
     
