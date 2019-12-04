@@ -19,11 +19,13 @@
                          <li><a href="#">Some</a></li>
                     </ul>
                     <div class="header-login">
+                    <?php  if(!isset($_SESSION['userId'])){ ?>
                          <form action="Members/db_singIn_member.php" method="post">
                               <input type="text" name="mailuid" placeholder="E-mail...">
                               <input type="password" name="pwd" placeholder="Password...">
                               <button type="submit" name="login-submit">Login</button>
                          </form>
+                    <?php } ?>
                          <a href="form_singUp_member.php">Sing Up</a>
                          <form action="Members/session_logOut_member.php" method="post">
                               <button type="submit">Log out</button>

@@ -4,7 +4,8 @@ include '../GlobalsVariables.php';
 if (isset($_POST['Update'])) {
     $selectBook = "SELECT * FROM book 
             INNER JOIN copy_book ON book_id = originalBook_id
-            WHERE book_id = '$_POST[idBook]' AND id_copyBook = '$_POST[idCopyBook]'";
+            WHERE book_id = '$_POST[idBook]' AND languages = '$_POST[languages]'
+            LIMIT 1";
 
     $books = mysqli_fetch_all(mysqli_query($conn, $selectBook), MYSQLI_ASSOC);
 
