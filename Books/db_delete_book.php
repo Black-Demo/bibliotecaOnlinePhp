@@ -3,10 +3,17 @@
     if(isset($_POST['Delete'])){
         $deleteBook = "UPDATE copy_book
          SET available = 0
-         WHERE id_copyBook = 'intval($_POST[idCopyBook])' AND originalBook_id = 'intval($_POST[idBook])'";
+         WHERE languages = '($_POST[languages])' AND originalBook_id = 'intval($_POST[idBook])' AND available = 1
+         ORDER BY id_copyBook
+         LIMIT 1";
 
         if(!mysqli_query($conn,$deleteBook)){
             echo '<br>Delete CopyBook error: '.mysqli_error($conn);
+            header ('Location: ../index.php?error=deleteBook');
+            exit();
         }
+        
+        header('Location: ../index.php?success=deleteBook');
+        exit();
     }
 ?>

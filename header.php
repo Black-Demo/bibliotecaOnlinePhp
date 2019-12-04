@@ -5,7 +5,7 @@
 <html>
      <head>          
           <title></title>
-          <link rel="stylesheet" href="style.css">
+          <link rel="stylesheet" href="./style.css">
      </head>
      <body>
           <header>
@@ -15,7 +15,7 @@
                     </a>
                     <ul>
                          <li><a href="index.php">Home</a></li>
-                         <li><a href="#">Search</a></li>
+                         <li><?php include 'search_book.php' ?></li>
                          <li><a href="#">Some</a></li>
                     </ul>
                     <div class="header-login">
@@ -25,7 +25,7 @@
                               <button type="submit" name="login-submit">Login</button>
                          </form>
                          <a href="form_singUp_member.php">Sing Up</a>
-                         <form action="Members/form_logOut_member.php" method="post">
+                         <form action="Members/session_logOut_member.php" method="post">
                               <button type="submit">Log out</button>
                          </form>
                     </div>

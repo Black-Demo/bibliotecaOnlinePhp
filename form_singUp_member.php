@@ -1,20 +1,22 @@
 <?php
     require 'header.php';
-    /*if(isset($_GET['error'])){
-        if($_GET['error']=="emptyfileds"){
-            echo '<p class="singError">Fill in all fields!</p>';
-        }
-        //else if(//El resto de errores)
-            
-        }else if($_GET['login']=="sucess"){
-            echo '<p class="sucessLogin">SUCCESS</p>';
-        }
-*/?>
+?>
 <main>
 
     <div class="wrapper-main">
         <section class="section-default">
             <h1>Sing up</h1>
+                <?php
+                    if(isset($_GET['error'])){
+                        if($_GET['error']=="emptyfield"){
+                            echo '<p class="singUp Error">Fill in all fields!</p>';
+                        }
+                        //else if(//El resto de errores)
+                            
+                    }else if($_GET['signup']=="sucess"){
+                        echo '<p class="sucessLogin">SUCCESS</p>';
+                    }
+                ?>
             <form action="Members/db_singUp_member.php" method='POST' class="form-singup">
                 
                 <input type="email" name="email" id="email" placeholder="email">

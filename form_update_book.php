@@ -81,7 +81,6 @@ if (isset($_POST['Update'])) {
     <br><br>
     <label for='language'>Language:</label>
     <select name='language' id='language'>";
-                echo $book['languages'];
                 for ($i = 0; $i < sizeOf($languagesArray); $i++) {
                     if ($book['languages'] == $languagesArray[$i])
                         echo "<option value=$languagesArray[$i] selected >$languagesArray[$i]</option>";

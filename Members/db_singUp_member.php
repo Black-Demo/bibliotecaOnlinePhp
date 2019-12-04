@@ -49,7 +49,7 @@
                  $varName,$varLastname1,$varLastname2,$varEmail,$hashPwd,$varDNI,$varPhone,$varNumPostal);
                 
                 mysqli_stmt_execute($stmt);
-                header("Location: ../form_singUp_member.php?sigUp=success");
+                header("Location: ../form_singUp_member.php?signup=success");
                 exit();
             }
         }
