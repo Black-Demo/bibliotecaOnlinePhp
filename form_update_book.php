@@ -2,10 +2,7 @@
 include 'header.php';
 include 'conection.php';
 include 'GlobalsVariables.php';
-if (isset($_POST['Update'])) {
-    echo 'test';
-    echo $_POST['idBook'];
-    
+if (isset($_POST['Update'])) {    
     $selectBook = "SELECT * FROM book 
             INNER JOIN copy_book ON book_id = originalBook_id
             WHERE book_id = '$_POST[idBook]' AND languages = '$_POST[languages]'";
@@ -13,7 +10,7 @@ if (isset($_POST['Update'])) {
     $books = mysqli_fetch_all(mysqli_query($conn, $selectBook), MYSQLI_ASSOC);
 
     foreach ($books as $book) {?>
-        <form method='POST' action='db_update_book.php'>
+        <form method='POST' action='Books/db_update_book.php'>
             <!--Form for add books to the galery-->
             <fieldset>
                 <label for='title'>Title:</label>
@@ -103,5 +100,5 @@ if (isset($_POST['Update'])) {
         <input type='submit' value='Update Book' name='update_book'>
 </form>
 <?php
-            }
-        } ?>
+    }
+} ?>

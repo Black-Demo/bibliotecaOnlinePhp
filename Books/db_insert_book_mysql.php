@@ -27,13 +27,15 @@
                                 author,
                                 editorial,
                                 theme,
-                                category
+                                category,
+                                quantity
                         )VALUES(
                                 '$varTitleBook',
                                 '$varAuthor',
                                 '$varEditorial',
                                 '$varTheme',
-                                '$varCategory'
+                                '$varCategory',
+                                1
                         )";
 
                         if(!mysqli_query($conn,$sqlInsertBook)){

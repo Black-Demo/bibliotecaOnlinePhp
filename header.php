@@ -9,7 +9,7 @@
      </head>
      <body>
           <header>
-               <nav class="nav-header-main">
+               <nav class="nav header main">
                     <a href="#" class="header-logo">
                          <img src="img/logo.jpg" alt="logo">
                     </a>
@@ -18,7 +18,7 @@
                          <li><?php include 'search_book.php' ?></li>
                          <li><a href="#">Some</a></li>
                     </ul>
-                    <div class="header-login">
+                    <div class="header login">
                     <?php  if(!isset($_SESSION['userId'])){ ?>
                          <form action="Members/db_singIn_member.php" method="post">
                               <input type="text" name="mailuid" placeholder="E-mail...">
@@ -26,8 +26,8 @@
                               <button type="submit" name="login-submit">Login</button>
                          </form>
                     <?php } ?>
-                         <a href="form_singUp_member.php">Sing Up</a>
-                         <form action="Members/session_logOut_member.php" method="post">
+                         <a href="form_singUp_member.php" class="sing up ref">Sing Up</a>
+                         <form action="Members/session_logOut_member.php" method="post" class="log out button">
                               <button type="submit">Log out</button>
                          </form>
                     </div>

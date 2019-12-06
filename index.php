@@ -3,8 +3,8 @@
 ?>
 
     <main>
-        <div class="wrapper-main">
-            <section class="section-default">
+        <div class="wrapper main">
+            <section class="section default">
                 <?php
                     if(isset($_SESSION['userId'])){
                         if($_SESSION['librarian']=='1')
