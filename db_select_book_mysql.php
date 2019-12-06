@@ -26,7 +26,7 @@ if (isset($_POST['select_book'])) {
         echo '<br>';
         if (isset($_SESSION['userId'])){ ?>
             <!--If the user are register he can reserve-->
-            <form name='libro' method='POST' action='../Reservations/reserve.php'>
+            <form name='libro' method='POST' action='Reservations/reserve.php'>
                 <input type='hidden' id='idBook' name='idBook' value=$book[book_id]>
                 <input type='hidden' id='languages' name='languages' value=$book[languages]>
                 <input type='submit' name='Reservation' value='Reservation'>

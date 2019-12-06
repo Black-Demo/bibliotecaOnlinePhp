@@ -37,14 +37,15 @@
                         )";
 
                         if(!mysqli_query($conn,$sqlInsertBook)){
-                                echo ' insert book error: '.mysqli_error($conn); 
+                                echo ' insert book error: '.mysqli_error($conn);
+                                header ('Locaction ../index.php?error=InsertBookError');
+                                exit();
                         }
 
                         $sqlSelectIdBookNew = "SELECT book_id FROM book WHERE title = '$varTitleBook'";
                         $resultNew = mysqli_query($conn, $sqlSelectIdBookNew);
                         $idBookNew = mysqli_fetch_assoc($resultNew);
 
-                        echo $idBookNew['book_id'];
                         $sqlInsertCopyBook = "INSERT INTO copy_book(
                                 OriginalBook_id,
                                 languages,
@@ -60,7 +61,12 @@
 
                         if(!mysqli_query($conn,$sqlInsertCopyBook)){
                                 echo '<br>new ID insert CopyBook error: '.mysqli_error($conn);
+                                header ('Locaction ../index.php?error=InsertCopyBookError');
+                                exit();
                         }
+
+                        header ('Locaction ../index.php?sucess=InsertBook');
+                        exit();
 
                 }else{
                         $sqlInsertCopyBook = "INSERT INTO copy_book(
@@ -77,11 +83,18 @@
         
                         if(!mysqli_query($conn,$sqlInsertCopyBook)){
                                 echo '<br> old ID insert CopyBook error: '.mysqli_error($conn);
+                                header ('Locaction ../index.php?error=InsertCopyBookError');
+                                exit();
                         }
+                        
+                        header ('Locaction ../index.php?sucess=InsertBook');
+                        exit();
                 }
 
         }
         
         //conection close
         mysqli_close($conn);
+        header ('Locaction ../index.php?sucess=InsertBook');
+        exit();
 ?>
