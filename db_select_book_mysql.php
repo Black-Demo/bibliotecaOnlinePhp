@@ -24,26 +24,28 @@ if (isset($_POST['select_book'])) {
         echo 'Category: '.htmlspecialchars($book['category']).'<br>';
         echo 'Languages: '.htmlspecialchars($book['languages']).'<br>';
         echo '<br>';
-        if (isset($_SESSION['userId'])){ ?>
+        if (isset($_SESSION['userId'])){ 
+            echo "
             <!--If the user are register he can reserve-->
             <form name='libro' method='POST' action='Reservations/reserve.php'>
-                <input type='hidden' id='idBook' name='idBook' value=$book[book_id]>
-                <input type='hidden' id='languages' name='languages' value=$book[languages]>
+                <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
+                <input type='hidden' id='languages' name='languages' value='$book[languages]'>
                 <input type='submit' name='Reservation' value='Reservation'>
             </form>
-            <!--If the user are the librarian he can delete and update a book-->
-            <?php if($_SESSION['librarian']=='1'){?>
+            <!--If the user are the librarian he can delete and update a book-->";
+             if($_SESSION['librarian']=='1'){
+                 echo "
                 <form name='libro' method='POST' action='form_update_book.php'>
-                    <input type='hidden' id='idBook' name='idBook' value=$book[book_id]>
-                    <input type='hidden' id='languages' name='languages' value=$book[languages]>
+                    <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
+                    <input type='hidden' id='languages' name='languages' value='$book[languages]'>
                     <input type='submit' name='Update' value='Update'>
                 </form>
                 <form name='libro' method='POST' action='Books/db_delete_book.php'>
-                    <input type='hidden' id='idBook' name='idBook' value=$book[book_id]>
-                    <input type='hidden' id='languages' name='languages' value=$book[languages]>
+                    <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
+                    <input type='hidden' id='languages' name='languages' value='$book[languages]'>
                     <input type='submit' name = 'Delete' value='Delete'>
-                </form>
-            <?php } 
+                </form>";
+             } 
         }
     }
 }

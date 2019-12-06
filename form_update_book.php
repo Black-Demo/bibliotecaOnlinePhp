@@ -3,6 +3,9 @@ include 'header.php';
 include 'conection.php';
 include 'GlobalsVariables.php';
 if (isset($_POST['Update'])) {
+    echo 'test';
+    echo $_POST['idBook'];
+    
     $selectBook = "SELECT * FROM book 
             INNER JOIN copy_book ON book_id = originalBook_id
             WHERE book_id = '$_POST[idBook]' AND languages = '$_POST[languages]'";

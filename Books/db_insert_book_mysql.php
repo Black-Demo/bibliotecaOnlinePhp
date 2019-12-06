@@ -38,7 +38,7 @@
 
                         if(!mysqli_query($conn,$sqlInsertBook)){
                                 echo ' insert book error: '.mysqli_error($conn);
-                                header ('Locaction ../index.php?error=InsertBookError');
+                                header("Location: ../index.php?error=insertBook");
                                 exit();
                         }
 
@@ -61,12 +61,13 @@
 
                         if(!mysqli_query($conn,$sqlInsertCopyBook)){
                                 echo '<br>new ID insert CopyBook error: '.mysqli_error($conn);
-                                header ('Locaction ../index.php?error=InsertCopyBookError');
+                                header("Location: ../index.php?error=insertCopybook");
                                 exit();
                         }
-
-                        header ('Locaction ../index.php?sucess=InsertBook');
+                        echo 'test';
+                        header("Location: ../index.php?success=book");
                         exit();
+                        
 
                 }else{
                         $sqlInsertCopyBook = "INSERT INTO copy_book(
@@ -83,18 +84,18 @@
         
                         if(!mysqli_query($conn,$sqlInsertCopyBook)){
                                 echo '<br> old ID insert CopyBook error: '.mysqli_error($conn);
-                                header ('Locaction ../index.php?error=InsertCopyBookError');
+                                header("Location: ../index.php?error=insertCopyBook");
                                 exit();
                         }
-                        
-                        header ('Locaction ../index.php?sucess=InsertBook');
+                        echo 'test';
+                        header("Location: ../index.php?success=book");
                         exit();
                 }
 
         }
-        
+        echo 'cosa';
         //conection close
         mysqli_close($conn);
-        header ('Locaction ../index.php?sucess=InsertBook');
+        header("Location: ../index.php?success=?");
         exit();
 ?>

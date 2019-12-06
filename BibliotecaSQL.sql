@@ -1,3 +1,4 @@
+create user 'libraryStiven'@'localhost' identified by 'contraseñasegura';
 drop database if exists library;
 create database library;
 use  library;

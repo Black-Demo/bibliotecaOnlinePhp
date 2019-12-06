@@ -13,7 +13,7 @@
                         }
                         //else if(//El resto de errores)
                             
-                    }else if($_GET['sucess']=="login"){
+                    }else if($_GET['signup']=="sucess"){
                         echo '<p class="sucessLogin">SUCCESS</p>';
                     }
                 ?>
