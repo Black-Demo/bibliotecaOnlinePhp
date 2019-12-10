@@ -1,30 +1,43 @@
 <?php
+session_start();
 include '../conection.php';
 if (isset($_POST['Reservation'])) {
 
-    $varCopyIdBook = mysqli_real_escape_string($conn, $_POST['idCopyBook']);
+    $sqlCopyIdBook = "SELECT id_copyBook FROM copy_book
+        WHERE languages = '$_POST[languages]' AND originalBook_id = '$_POST[idBook]'
+        AND available = 1 AND reserved = 0 Limit 1";
+    $varIdCopy = mysqli_fetch_assoc(mysqli_query($conn, $sqlCopyIdBook));
 
-    $sqlInsertReserve =  "INSERT INTO reservation(
+    
+    $sqlInsertReserve = "INSERT INTO reservation(
         Copybook_id,
         member_id
-    )VALUES(
-        $varCopyIdBook,
-        1
-    )";
+    ) VALUES(?,?)";
 
-    if(!mysqli_query($conn,$sqlInsertReserve))
-        echo ' insert reserve error: '.mysqli_error($conn);
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt,$sqlInsertReserve))
+        header ("Location: ../index.php?error=reserveError");
+    else{
+        mysqli_stmt_bind_param($stmt,'ss',$varIdCopy['id_copyBook'],$_SESSION['userId']);
+        mysqli_stmt_execute($stmt);
 
-    $sqlSelectInsertDate = "SELECT DATE_ADD(date_at, interval 1 month) as dateEnd from reservation";
+        //Poner la fecha de entrega para un mes despues de la reserva
+        $sqlUpdatereserve = "UPDATE reservation SET date_end = date_add(date_at,interval 1 month)
+        WHERE Copybook_id = '$varIdCopy[id_copyBook]' AND member_id = '$_SESSION[userId]'";
+        if(!$conn->query($sqlUpdatereserve)){
+            header("Location: ../index.php?error=insertDateEnd");
+            exit();
+        }
+        //Poner un libro como reservado
+        $sqlUpdateCopybook = "UPDATE copy_book SET reserved = 1 WHERE id_copyBook = '$varIdCopy[id_copyBook]'";
+        if(!$conn->query($sqlUpdateCopybook)){
+            header("Location: ../index.php?error=updateReserveBook");
+            exit();
+        }
 
-    $dateEndReserve = mysqli_fetch_all(mysqli_query($conn, $sqlSelectInsertDate), MYSQLI_ASSOC);
 
-    $sqlInsertReserveNew = "UPDATE reservation
-    set date_end = $dateEndReserve[dateEnd]
-    where Copybook_id = $varCopyIdBook";
-
-    if (!$conn->query($sqlInsertReserveNew)) {
-        echo '<br>cosa Book error: ' . mysqli_error($conn);
+        header("Location: ../index.php?resevation=success");
+        exit();
     }
 }
 ?>

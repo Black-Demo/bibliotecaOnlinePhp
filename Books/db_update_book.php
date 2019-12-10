@@ -8,15 +8,8 @@ if (isset($_POST['update_book'])) {
     $varTheme = mysqli_real_escape_string($conn, $_POST['theme']);
     $varCategory = mysqli_real_escape_string($conn, $_POST['category']);
     $varLanguage = mysqli_real_escape_string($conn, $_POST['language']);
-
     $varIdBook = mysqli_real_escape_string($conn, $_POST['idBook']);
     
-    $sqlSelectIdCopyBook = "SELECT id_copyBook FROM copy_book 
-    WHERE originalBook_id = '$varIdBook' AND languages = '$varLanguage'";
-
-    $idCopyBook = mysqli_fetch_assoc(mysqli_query($conn, $sqlSelectIdCopyBook));
-    
-    echo $idCopyBook['id_copyBook'];
 
     $UpdateBook = "UPDATE book
          SET title = '$varTitleBook',
@@ -29,16 +22,6 @@ if (isset($_POST['update_book'])) {
     if (!$conn->query($UpdateBook)) {
         echo '<br>Update Book error: ' . mysqli_error($conn);
         header ('Location: ../index.php?error=UpdateBook');
-        exit();
-    }
-
-    $UpdateCopyBook = "UPDATE copy_book
-         SET languages = '$varLanguage'
-         WHERE id_copyBook = '$idCopyBook[id_copyBook]'";
-
-    if (!$conn->query($UpdateCopyBook)) {
-        echo '<br>Update copyBook error: ' . mysqli_error($conn);
-        header ('Location: ../index.php?error=UpdateCopyBook');
         exit();
     }
 

@@ -23,7 +23,6 @@ if (isset($_POST['select_book'])) {
         echo 'Theme: '.htmlspecialchars($book['theme']).'<br>';
         echo 'Category: '.htmlspecialchars($book['category']).'<br>';
         echo 'Languages: '.htmlspecialchars($book['languages']).'<br>';
-        echo '<br>';
         if (isset($_SESSION['userId'])){ 
             echo "
             <!--If the user are register he can reserve-->
@@ -40,7 +39,7 @@ if (isset($_POST['select_book'])) {
                     <input type='hidden' id='languages' name='languages' value='$book[languages]'>
                     <input type='submit' name='Update' value='Update'>
                 </form>
-                <form name='libro' method='POST' action='Books/db_delete_book.php'>
+                <form name='libro' method='POST' action='Books/db_delete_book.php' class='form delete book'>
                     <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
                     <input type='hidden' id='languages' name='languages' value='$book[languages]'>
                     <input type='submit' name = 'Delete' value='Delete'>

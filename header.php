@@ -10,16 +10,15 @@
      <body>
           <header>
                <nav class="nav header main">
-                    <a href="#" class="header-logo">
+                    <a href="index.php" class="header-logo">
                          <img src="img/logo.jpg" alt="logo">
                     </a>
                     <ul>
                          <li><a href="index.php">Home</a></li>
                          <li><?php include 'search_book.php' ?></li>
-                         <li><a href="#">Some</a></li>
                     </ul>
                     <div class="header login">
-                    <?php  if(!isset($_SESSION['userId'])){ ?>
+                    <?php if(!isset($_SESSION['userId'])){ ?>
                          <form action="Members/db_singIn_member.php" method="post">
                               <input type="text" name="mailuid" placeholder="E-mail...">
                               <input type="password" name="pwd" placeholder="Password...">

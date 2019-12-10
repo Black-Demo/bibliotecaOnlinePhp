@@ -4,6 +4,10 @@
 <form method='POST' action='Books/db_insert_book_mysql.php'>
     <!--Form for add books to the galery-->
     <fieldset>
+        <label for='pos'>Position:</label>
+        <input type='number' name='pos' id='pos'>
+        <br><br>
+
         <label for='title'>Title:</label>
         <input type='text' name='title' id='title'>
         <br><br>
@@ -14,6 +18,10 @@
 
         <label for='editorial'>Editorial:</label>
         <input type='text' name='editorial' id='editorial'>
+        <br><br>
+
+        <label for='isbn'>ISBN:</label>
+        <input type= 'number' name='isbn' id='isbn'>
         <br><br>
 
         <label for='theme'>Theme</label>

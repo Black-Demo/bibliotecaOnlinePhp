@@ -5,7 +5,8 @@ include 'GlobalsVariables.php';
 if (isset($_POST['Update'])) {    
     $selectBook = "SELECT * FROM book 
             INNER JOIN copy_book ON book_id = originalBook_id
-            WHERE book_id = '$_POST[idBook]' AND languages = '$_POST[languages]'";
+            WHERE book_id = '$_POST[idBook]' AND languages = '$_POST[languages]'
+            GROUP BY originalBook_id";
 
     $books = mysqli_fetch_all(mysqli_query($conn, $selectBook), MYSQLI_ASSOC);
 
@@ -81,18 +82,6 @@ if (isset($_POST['Update'])) {
                         }
                         ?>    
                 </optgroup>
-            </select>
-            <br><br>
-            <label for='language'>Language:</label>
-            <select name='language' id='language'>";
-                <?php
-                        for ($i = 0; $i < sizeOf($languagesArray); $i++) {
-                            if ($book['languages'] == $languagesArray[$i])
-                                echo "<option value=$languagesArray[$i] selected >$languagesArray[$i]</option>";
-                            else
-                                echo "<option value=$languagesArray[$i]>$languagesArray[$i]</option>";
-                        }
-                        ?>
             </select>
             <br><br>
         </fieldset>
