@@ -35,7 +35,6 @@ if (isset($_POST['Reservation'])) {
             exit();
         }
 
-
         header("Location: ../index.php?resevation=success");
         exit();
     }

@@ -8,18 +8,19 @@ create table members(
     name            varchar(255),
     lastname1       varchar(255),
     lastname2       varchar(255),
-    e_mail          varchar(255),
+    e_mail          varchar(255) unique,
     password_user   varchar(255),
-    dni				varchar(255) not null,
+    dni				varchar(255) not null unique,
     phone           int(9),
     postalNumber    int(5),
-    penalty			boolean default 0,
+    penalty			int default 0,
+    total_books_reserved		int default 0,
     librarian		boolean default 0
 );
 
 create table book(
     book_id         int auto_increment primary key,
-    location		int,
+    location		int unique,
     title           varchar(255),
     ISBN            varchar(25),
     author          varchar(45),
@@ -45,7 +46,9 @@ create table reservation(
 	id_reservation	int auto_increment primary key,
     Copybook_id     int,
     member_id       int,
-    date_at         datetime default current_timestamp,
+    date_reserve    datetime default current_timestamp,
+    #date_get		datetime,
+    #date_max		datetime,
     date_end        datetime,
     date_devolution   datetime,
     foreign key (Copybook_id) references copy_book (id_copyBook)

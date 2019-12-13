@@ -26,6 +26,9 @@
                         session_start();
                         $_SESSION['userId'] = $row['member_id'];
                         $_SESSION['userDni'] = $row['dni'];
+                        $_SESSION['email'] = $row['e_mail'];
+                        $_SESSION['penalty'] = $row['penalty'];
+                        $_SESSION['total_books'] = $row['total_books_reserved'];
                         $_SESSION['librarian'] = $row['librarian'];
 
                         header("Location: ../index.php?login=success");

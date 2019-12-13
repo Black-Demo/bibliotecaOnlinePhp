@@ -1,5 +1,6 @@
 <?php
      session_start();
+     include 'conection.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,14 @@
                     </a>
                     <ul>
                          <li><a href="index.php">Home</a></li>
+                         <?php if(isset($_SESSION['userId'])){ ?>
+                              <li><a href="myUniverse.php">My universe</a>
+                                   <ul>
+                                        <li><a href="MyUniverse.php#profile">Profile</a></li>
+                                        <li><a href="MyUniverse.php#borrows">Borrows</a></li>
+                                   </ul>
+                              </li>
+                         <?php } ?>
                          <li><?php include 'search_book.php' ?></li>
                     </ul>
                     <div class="header login">
@@ -24,8 +33,8 @@
                               <input type="password" name="pwd" placeholder="Password...">
                               <button type="submit" name="login-submit">Login</button>
                          </form>
-                    <?php } ?>
-                         <a href="form_singUp_member.php" class="sing up ref">Sing Up</a>
+                         <a href="form_singUp_member.php" class="sing-up-ref">Sing Up</a>
+                    <?php }?>
                          <form action="Members/session_logOut_member.php" method="post" class="log out button">
                               <button type="submit">Log out</button>
                          </form>
