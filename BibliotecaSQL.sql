@@ -13,8 +13,8 @@ create table members(
     dni				varchar(255) not null unique,
     phone           int(9),
     postalNumber    int(5),
-    penalty			int default 0,
-    total_books_reserved		int default 0,
+    penalty			datetime,
+    total_books_reserved	int default 0,
     librarian		boolean default 0
 );
 
@@ -45,7 +45,7 @@ create table copy_book(
 create table reservation(
 	id_reservation	int auto_increment primary key,
     Copybook_id     int,
-    member_id       int,
+    user_id       int,
     date_reserve    datetime default current_timestamp,
     #date_get		datetime,
     #date_max		datetime,
@@ -53,7 +53,7 @@ create table reservation(
     date_devolution   datetime,
     foreign key (Copybook_id) references copy_book (id_copyBook)
 		on delete no action on update cascade,
-    foreign key(member_id) references members(member_id)
+    foreign key(user_id) references members(member_id)
         on delete no action on update cascade
 );
 
