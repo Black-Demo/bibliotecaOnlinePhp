@@ -23,7 +23,14 @@
                                         <li><a href="MyUniverse.php#borrows">Borrows</a></li>
                                    </ul>
                               </li>
-                         <?php } ?>
+
+                         <?php
+                              if($_SESSION['librarian']=='1'){
+                         ?>
+                              <li><a href="Devolution.php">Devolution</a></li>
+                         <?php    
+                              }                    
+                         } ?>
                          <li><?php include 'search_book.php' ?></li>
                     </ul>
                     <div class="header login">
