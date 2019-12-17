@@ -13,7 +13,7 @@ create table members(
     dni				varchar(255) not null unique,
     phone           int(9),
     postalNumber    int(5),
-    penalty			datetime,
+    penalty			date,
     total_books_reserved	int default 0,
     librarian		boolean default 0
 );

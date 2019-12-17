@@ -36,6 +36,10 @@ if (isset($_POST['Reservation'])) {
         }
 
         $sqlTotalReserve = "UPDATE members SET total_books_reserved = (total_books_reserved+1) WHERE member_id='$_SESSION[userId]'";
+        if(!$conn->query($sqlTotalReserve)){
+            header("Location: ../index.php?error=updateTotalBooks");
+            exit();
+        }
 
         header("Location: ../index.php?resevation=success");
         exit();

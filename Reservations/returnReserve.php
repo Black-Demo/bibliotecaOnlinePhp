@@ -3,8 +3,11 @@
 
     function calculatepenalty($date_end,$date_devolution,$penalty){
         $fechaActual = new DateTime($penalty);
-        echo
-        return ($fechaActual->add(date_diff(new DateTime($date_devolution),new DateTime($date_end))));
+        //echo date_diff($date_devolution,new DateTime($date_end));
+        if($date_devolution >= $fechaActual) 
+            return date_format(new DateTime(),'Y-m-d');
+        else
+            return date_format(($fechaActual->add(date_diff(new DateTime($date_end),$date_devolution))),'Y-m-d');
     }
 
     if(isset($_POST['return'])){
@@ -26,27 +29,31 @@
         $selectActualPenalty = "SELECT penalty from members where member_id='$_POST[user_id]'";
         $penalty = mysqli_fetch_assoc(mysqli_query($conn,$selectActualPenalty));
 
+        if($penalty['penalty']!=null){
+            $penaltyDate = calculatepenalty($_POST['date_end'],new DateTime(),$penalty['penalty']);
+            $sqlPenalty = "UPDATE members set penalty = '$penaltyDate' WHERE member_id='$_POST[user_id]'";
+        }else{
+            $penaltyDate = calculatepenalty($_POST['date_end'],new DateTime(),'NOW');
+            $sqlPenalty = "UPDATE members set penalty = '$penaltyDate' WHERE member_id='$_POST[user_id]'";
+        }
         
-
-        $hoy = new DateTime();
-        $sqlPenalty = "UPDATE members set penalty = ".calculatepenalty($_POST['date_end'],$hoy->getTimestamp(),$penalty['penalty'])
-            ."WHERE member_id='$_POST[user_id]'";
+        
+        
         if(!$conn->query($sqlPenalty)) {
-            echo calculatepenalty($_POST['date_end'],$hoy->getTimestamp(),$penalty['penalty']);
-            /*echo '<br>Update penalty error: ' . mysqli_error($conn);
+            echo '<br>Update penalty error: ' . mysqli_error($conn);
             header ('Location: ../Devolution.php?error=penaltyNoAdd');
-            exit();*/
+            exit();
         }
 
         $uptateTotalBook = "UPDATE members set total_books_reserved = (total_books_reserved-1) where member_id='$_POST[user_id]'";
         if(!$conn->query($uptateTotalBook)) {
-           /* echo '<br>Update total_book error: ' . mysqli_error($conn);
+            '<br>Update total_book error: ' . mysqli_error($conn);
             header ('Location: ../Devolution.php?error=totalBook');
-            exit();*/
+            exit();
         }
 
 
-        /*header('Location: ../Devolution.php?succes=returnBook');
-        exit();*/
+        header('Location: ../Devolution.php?succes=returnBook');
+        exit();
     }
 ?>
