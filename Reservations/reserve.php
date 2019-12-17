@@ -11,7 +11,7 @@ if (isset($_POST['Reservation'])) {
     
     $sqlInsertReserve = "INSERT INTO reservation(
         Copybook_id,
-        member_id
+        user_id
     ) VALUES(?,?)";
 
     $stmt = mysqli_stmt_init($conn);
@@ -22,18 +22,20 @@ if (isset($_POST['Reservation'])) {
         mysqli_stmt_execute($stmt);
 
         //Poner la fecha de entrega para un mes despues de la reserva
-        $sqlUpdatereserve = "UPDATE reservation SET date_end = date_add(date_at,interval 1 month)
-        WHERE Copybook_id = '$varIdCopy[id_copyBook]' AND member_id = '$_SESSION[userId]'";
+        $sqlUpdatereserve = "UPDATE reservation SET date_end = date_add(date_reserve,interval 1 month)
+        WHERE Copybook_id = '$varIdCopy[id_copyBook]' AND user_id = '$_SESSION[userId]'";
         if(!$conn->query($sqlUpdatereserve)){
             header("Location: ../index.php?error=insertDateEnd");
             exit();
         }
         //Poner un libro como reservado
-        $sqlUpdateCopybook = "UPDATE copy_book SET reserved = 1 WHERE id_copyBook = '$varIdCopy[id_copyBook]'";
+        $sqlUpdateCopybook = "UPDATE copy_book SET reserved = 1 WHERE id_copyBook = '.$varIdCopy[id_copyBook]'";
         if(!$conn->query($sqlUpdateCopybook)){
             header("Location: ../index.php?error=updateReserveBook");
             exit();
         }
+
+        $sqlTotalReserve = "UPDATE members SET total_books_reserved = (total_books_reserved+1) WHERE member_id='$_SESSION[userId]'";
 
         header("Location: ../index.php?resevation=success");
         exit();

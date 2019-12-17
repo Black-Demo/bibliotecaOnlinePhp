@@ -11,10 +11,11 @@
                         if($_GET['error']=="emptyfield"){
                             echo '<p class="singUp Error">Fill in all fields!</p>';
                         }
+                        else if($_GET['success']=='singup'){
+                            echo '<p class="sucessLogin">SUCCESS</p>';
+                        }
                         //else if(//El resto de errores)
                             
-                    }else if($_GET['signup']=="sucess"){
-                        echo '<p class="sucessLogin">SUCCESS</p>';
                     }
                 ?>
             <form action="Members/db_singUp_member.php" method='POST' class="form singup">
