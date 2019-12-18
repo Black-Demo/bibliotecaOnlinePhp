@@ -8,14 +8,14 @@
         </div>
         <div class="user-library-information">
             <p class="total-books">
-                <?php echo $_SESSION['total_books']; ?> 
-                Libros pendientes de devolución
+                <?php echo $_SESSION['total_books']; ?> Libros pendientes de devolución
             </p>
             <p class="penalty">
-                Usted no podra reservar ningun libro hasta: 
-                <?php 
-                    echo $_SESSION['penalty'];
-                ?>
+            <?php if(!(strtotime($_SESSION['penalty'])< strtotime(date ("Y-m-d",time())))){ ?>
+                Usted no podra reservar ningun libro hasta: <?php echo $_SESSION['penalty']; ?>
+            <?php }else{ ?>
+                No tienes ninguna penalización.
+            <?php } ?>
             </p>
         </div>
     </div>

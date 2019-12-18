@@ -1,5 +1,6 @@
 <?php
-    require '../conection.php';
+    require '../includes/conection.php';
+
     if(isset($_POST['login-submit'])){
         $varEmailUid = mysqli_real_escape_string($conn,$_POST['mailuid']);
         $varPwd = mysqli_real_escape_string($conn,$_POST['pwd']);

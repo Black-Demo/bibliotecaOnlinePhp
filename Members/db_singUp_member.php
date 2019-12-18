@@ -1,5 +1,6 @@
 <?php 
-    require '../conection.php';
+    require '../includes/conection.php';
+    
     if (isset($_POST['insert_member'])){
         $varEmail = mysqli_real_escape_string($conn,$_POST['email']);
         $varPassw = mysqli_real_escape_string($conn,$_POST['pwd']);

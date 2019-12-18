@@ -1,8 +1,8 @@
 <?php
-    include 'GlobalsVariables.php';
+    include 'includes/GlobalsVariables.php';
 ?>
 
-<form method='POST' action='Books/db_insert_book_mysql.php'>
+<form method='POST' action='Books/db_insert_book.php'>
     <!--Form for add books to the galery-->
     <fieldset>
         <label for='pos'>Position:</label>

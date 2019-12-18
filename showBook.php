@@ -3,7 +3,6 @@
 ini_set('include_path',$_SERVER['DOCUMENT_ROOT'].'/tuts/Biblioteca');
 
 include 'header.php';
-include 'conection.php';
 
 if (isset($_POST['select_book'])) {
     if (empty($_POST['book_search']))
@@ -24,6 +23,7 @@ if (isset($_POST['select_book'])) {
         echo 'Category: '.htmlspecialchars($book['category']).'<br>';
         echo 'Languages: '.htmlspecialchars($book['languages']).'<br>';
         if (isset($_SESSION['userId'])){ 
+            if(strtotime($_SESSION['penalty'])< strtotime(date ("Y-m-d",time())))
             echo "
             <!--If the user are register he can reserve-->
             <form name='libro' method='POST' action='Reservations/reserve.php'>

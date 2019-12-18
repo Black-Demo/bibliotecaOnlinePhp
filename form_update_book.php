@@ -1,7 +1,6 @@
 <?php
 include 'header.php';
-include 'conection.php';
-include 'GlobalsVariables.php';
+include 'includes/GlobalsVariables.php';
 if (isset($_POST['Update'])) {    
     $selectBook = "SELECT * FROM book 
             INNER JOIN copy_book ON book_id = originalBook_id

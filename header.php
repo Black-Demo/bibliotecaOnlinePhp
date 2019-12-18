@@ -1,11 +1,11 @@
 <?php
      session_start();
-     include 'conection.php';
+     include 'includes/conection.php';
 ?>
 <!DOCTYPE html>
 <html>
      <head>          
-          <title></title>
+          <title>Library</title>
           <link rel="stylesheet" href="./style.css">
      </head>
      <body>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../conection.php';
+include '../includes/conection.php';
 if (isset($_POST['Reservation'])) {
 
     $sqlCopyIdBook = "SELECT id_copyBook FROM copy_book

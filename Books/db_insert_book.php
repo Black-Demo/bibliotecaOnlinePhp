@@ -1,4 +1,4 @@
-<?php include '../conection.php' ?>
+<?php include '../includes/conection.php' ?>
 <?php
         if(isset($_POST['insert_book'])){
                 $varPos = mysqli_real_escape_string($conn,$_POST['pos']);
@@ -12,9 +12,9 @@
 
                 //isbnCorrect($varISBN);
 
-//Insert a book, if this have a reference into the table only insert the language
+                //Insert a book, if this have a reference into the table only insert the language
                 //Id book whit the dates 
-                if(!($varAuthor=""||$varTitleBook=""||$varTitleBook=""||$varAuthor=""||$varEditorial=""||$varISBN=""||$varPos="")){
+                if(!($varAuthor==""||$varTitleBook==""||$varTitleBook==""||$varAuthor==""||$varEditorial==""||$varISBN==""||$varPos=="")){
                         $sqlSelectIdBook = "SELECT book_id FROM book WHERE title = '$varTitleBook'";
                         $result = mysqli_query($conn, $sqlSelectIdBook);
                         $idBook = mysqli_fetch_assoc($result);
@@ -22,8 +22,6 @@
                         $sqlCountBook = "SELECT COUNT(*) as total FROM book  WHERE book_id = '$idBook[book_id]'";
                         $test = mysqli_query($conn, $sqlCountBook);
                         $numberBook = mysqli_fetch_assoc($test);
-                        
-                        //echo $idBook['book_id'];
 
                         if($numberBook['total']==0){
                                 $sqlInsertBook = "INSERT INTO book(
@@ -100,7 +98,7 @@
 
                                 $sqlUpdateQuantity = "UPDATE book set quantity=(quantity+1) where book_id='$idBook[book_id]'";
                                 if(!$conn->query($sqlUpdateQuantity)) {
-                                        '<br>Update quantity error: ' . mysqli_error($conn);
+                                        echo'<br>Update quantity error: ' . mysqli_error($conn);
                                         header ('Location: ../Devolution.php?error=quantity');
                                         exit();
                                 }

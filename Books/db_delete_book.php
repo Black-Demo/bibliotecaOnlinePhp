@@ -1,5 +1,5 @@
 <?php
-    include '../conection.php';
+    include '../includes/conection.php';
     if(isset($_POST['Delete'])){
         $deleteBook = "UPDATE copy_book
          SET available = 0

@@ -33,7 +33,7 @@
                     <input type="text" name="lastName2" id="lastName2" placeholder="second lastname">
                 </div>
                 <div class="form singup phone">
-                    <input type="tel" name="phone" id="phone" placeholder="telefon number">
+                    <input type="number" name="phone" id="phone" placeholder="telefon number">
                 </div>
                 <div class="form singup diretion">
                     <input type="number" name="numPostal" id="numPostal" placeholder="zip number">
