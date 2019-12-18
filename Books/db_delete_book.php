@@ -7,9 +7,8 @@
          LIMIT 1";
 
         if(!mysqli_query($conn,$deleteBook)){
-            
-            header ('Location: ../index.php?error=deleteBook');
             echo '<br>Delete CopyBook error: '.mysqli_error($conn);
+            header ('Location: ../index.php?error=deleteBook');
             exit();
         }
         
