@@ -85,7 +85,7 @@ if (isset($_POST['Update'])) {
             <br><br>
         </fieldset>
         <br>
-        <input type='submit' value='Update Book' name='update_book'>
+        <input type='submit' value='Update Book' name='update_book' class='btn'>
 </form>
 <?php
     }

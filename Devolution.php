@@ -4,7 +4,7 @@
 <div class="buscadorUsuario">
     <form action="Devolution.php#users" method='POST'>
         <input type="text" class="DniUsuario"  placeholder="Dni user" name="dni">
-        <input type="submit" value="search" name="search_User">
+        <input type="submit" value="search" name="search_User" class="search">
     </form>
     
     <?php 
@@ -28,14 +28,12 @@
                         <input type='hidden' id='date_end' name='date_end' value='$userBook[date_end]'>
                         <input type='hidden' id='user_id' name='user_id' value='$userBook[user_id]'>
                         <input type='hidden' id='Copybook_id' name='Copybook_id' value='$userBook[Copybook_id]'>
-                        <input type='submit' name='return' value='Return'>
+                        <input type='submit' name='return' value='Return' class='btn'>
                     </form>";
                 echo '<br>';
-            }
-            
-
-            
+            }            
         }
     ?>
 </div>
+<?php include'footer.php' ?>
 

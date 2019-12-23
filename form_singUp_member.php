@@ -6,18 +6,15 @@
     <div class="wrapper-main">
         <section class="section-default">
             <h1>Sing up</h1>
-                <?php
-                    if(isset($_GET['error'])){
-                        if($_GET['error']=="emptyfield"){
-                            echo '<p class="singUp Error">Fill in all fields!</p>';
-                        }
-                        else if($_GET['success']=='singup'){
-                            echo '<p class="sucessLogin">SUCCESS</p>';
-                        }
-                        //else if(//El resto de errores)
-                            
-                    }
-                ?>
+            <?php if(isset($_GET['error'])){
+                if($_GET['error']=="emptyfield"){
+                    echo '<p class="singUp Error">Fill in all fields!</p>';
+                }
+                else if($_GET['success']=='singup'){
+                    echo '<p class="sucessLogin">SUCCESS</p>';
+                }
+                        //else if(//El resto de errores)     
+            }?>
             <form action="Members/db_singUp_member.php" method='POST' class="form singup">
                 <div class="form singup userId">
                     <input type="email" name="email" id="email" placeholder="email">
@@ -38,9 +35,6 @@
                 <div class="form singup diretion">
                     <input type="number" name="numPostal" id="numPostal" placeholder="zip number">
                 </div>
-                
-                
- 
                 <button type='submit' name='insert_member'>Sing up</button>
             </form>
         </section>

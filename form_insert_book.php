@@ -66,5 +66,5 @@
         <br><br>
     </fieldset>
     <br>
-    <input type='submit' value='Add Book' name='insert_book'>
+    <input type='submit' value='Add Book' name='insert_book' class='btn'>
 </form>
