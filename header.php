@@ -7,6 +7,8 @@
      <head>          
           <title>Library</title>
           <link rel="stylesheet" href="./style.css">
+          <script src="https://kit.fontawesome.com/101380c162.js" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
      </head>
      <body>
           <header>
@@ -25,7 +27,7 @@
                          <?php    
                               }                    
                          } ?>
-                         <li><?php include 'search_book.php' ?></li>
+                         <li class="search-box"><?php include 'search_book.php' ?></li>
                     </ul>
                </nav>
                <div class="header-login">
@@ -34,7 +36,7 @@
                          <a href="form_singUp_member.php" class="sing-up button">Sing Up</a>
                     <?php }?>
                          <form action="Members/session_logOut_member.php" method="post" class="log-out">
-                              <button type="submit">Log out</button>
+                              <button type="submit" class="btn">Log out</button>
                          </form>
                </div>
           </header>
