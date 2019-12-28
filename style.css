@@ -238,3 +238,150 @@ nav ul li a:hover {
 .bottom-text a {
   color: #0097f2;
 }
+
+.singup-form {
+  width: 650px;
+  background-color: #f1f1f1;
+  height: 490px;
+  padding: 80px 40px;
+  border-radius: 40px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 50px;
+  margin-bottom: 60px;
+}
+
+.singup-form h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #0097f2;
+}
+
+.userId {
+  text-align: center;
+  justify-content: center;
+}
+.userId > .txtb {
+  display: inline-block;
+}
+
+.totalName {
+  text-align: center;
+  justify-content: center;
+}
+
+.totalName > .txtb {
+  display: inline-block;
+}
+
+.contact {
+  text-align: center;
+  justify-content: center;
+}
+
+.contact > .txtb {
+  display: inline-block;
+}
+
+.singup-form > .txtb {
+  border-bottom: 2px solid #adadad;
+  position: relative;
+  margin: 15px 0;
+}
+
+.contact > .prefix {
+  display: inline-block;
+}
+
+.singup-form > div > .txtb {
+  margin: 15px 0;
+  position: relative;
+  border-bottom: 2px solid #adadad;
+}
+
+.singup-form > .txtb span::after {
+  margin-left: -570px;
+}
+
+.singup-form > .userId > .txtb span::after {
+  margin-left: -186px;
+}
+
+.singup-form > .totalName > .txtb span::after {
+  margin-left: -186px;
+}
+
+.singup-form > .contact > .txtb span::after {
+  margin-left: -187px;
+}
+
+.prefix select {
+  background: #0097f2;
+  text-align: center;
+  justify-content: center;
+  color: #f1f1f1;
+  padding: 10px;
+  width: 100px;
+  height: 50px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+  outline: none;
+  border-radius: 40px;
+  transition: 0.5s;
+}
+
+.prefix select:hover {
+  background: #3779f3;
+}
+
+.singUpbtn {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.singbtn {
+  width: 200px;
+  height: 40px;
+  background: none;
+  border: 3px solid;
+  color: #0097f2;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 16px;
+  position: relative;
+}
+
+.singbtn::before,
+.singbtn::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 5px;
+  background: #f1f1f1;
+  transform: skewX(50deg);
+  transition: 0.4s linear;
+}
+
+.singbtn::before {
+  top: -4px;
+  left: 10%;
+}
+
+.singbtn::after {
+  bottom: -4px;
+  right: 10%;
+}
+
+.singbtn:hover::before {
+  left: 90%;
+}
+
+.singbtn:hover::after {
+  right: 90%;
+}

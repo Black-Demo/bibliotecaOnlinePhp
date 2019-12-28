@@ -21,7 +21,7 @@
                     $pwdCheck = password_verify($varPwd, $row['password_user']);
                     
                     if(!$pwdCheck){
-                        header("Location: ../index.php?error=wrongPwd".$row['password_user']."-".$varPwd);
+                        header("Location: ../index.php?error=wrongPwd".$row['password_user']."-".rand().$varPwd.rand());
                         exit();
                     }else if($pwdCheck){
                         session_start();
