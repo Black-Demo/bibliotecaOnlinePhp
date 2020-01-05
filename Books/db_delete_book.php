@@ -6,13 +6,15 @@
          WHERE languages = '$_POST[languages]' AND originalBook_id = 'intval($_POST[idBook])' AND available = 1
          LIMIT 1";
 
-        if(!mysqli_query($conn,$deleteBook)){
+        if(!$conn->query($deleteBook)){
             echo '<br>Delete CopyBook error: '.mysqli_error($conn);
             header ('Location: ../index.php?error=deleteBook');
             exit();
         }
         
-        header('Location: ../index.php?success=deleteBook');
-        exit();
+        echo intval($_POST['idBook']).'#'.$_POST['languages'];
+
+        /*header('Location: ../index.php?success=deleteBook');
+        exit();*/
     }
 ?>

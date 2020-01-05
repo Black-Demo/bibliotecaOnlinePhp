@@ -2,13 +2,14 @@
     include 'header.php';
 ?>
 <div class="buscadorUsuario">
-    <form action="Devolution.php#users" method='POST'>
-        <input type="text" class="DniUsuario"  placeholder="Dni user" name="dni">
-        <input type="submit" value="search" name="search_User" class="search">
-    </form>
-    
+    <?php if(!isset($_POST['search'])){ ?>
+        <form action="Devolution.php" method='POST' class="searchDNI-box">
+            <input type="text" class="searchDNI-txt"  placeholder="Dni user" name="dni">
+            <input type="submit" value="search" name="searchDNI_User" class="search-btn">
+        </form>
     <?php 
-        if(isset($_POST['search_User'])){
+    }
+        if(isset($_POST['search'])){
             $varDni = mysqli_real_escape_string($conn,$_POST['dni']);
 
             $SelectUser = "SELECT dni, name, date_reserve, date_end, title, languages, Copybook_id, user_id from members

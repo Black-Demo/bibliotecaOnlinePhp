@@ -9,7 +9,7 @@
                 $varTheme = mysqli_real_escape_string($conn, $_POST['theme']);
                 $varCategory = mysqli_real_escape_string($conn, $_POST['category']);
                 $varLanguage = mysqli_real_escape_string($conn, $_POST['language']);
-
+                $varQuantity = mysqli_real_escape_string($conn, $_POST['quantity']);
                 //isbnCorrect($varISBN);
 
                 //Insert a book, if this have a reference into the table only insert the language
@@ -41,7 +41,7 @@
                                         '$varISBN',
                                         '$varTheme',
                                         '$varCategory',
-                                        1
+                                        '$varQuantity'
                                 )";
 
                                 if(!mysqli_query($conn,$sqlInsertBook)){
@@ -66,12 +66,14 @@
                                         '0',
                                         '1'
                                 )";
-
-                                if(!mysqli_query($conn,$sqlInsertCopyBook)){
-                                        echo '<br>new ID insert CopyBook error: '.mysqli_error($conn);
-                                        header("Location: ../index.php?error=insertCopybook");
-                                        exit();
+                                for($i=0; $i<(intval($varQuantity)); $i++){
+                                        if(!mysqli_query($conn,$sqlInsertCopyBook)){
+                                                echo '<br>new ID insert CopyBook error: '.mysqli_error($conn);
+                                                header("Location: ../index.php?error=insertCopybook");
+                                                exit();
+                                        }
                                 }
+                                
 
                                 header("Location: ../index.php?success=book");
                                 exit();
@@ -89,14 +91,15 @@
                                         '0',
                                         '1'
                                 )";
-                
-                                if(!mysqli_query($conn,$sqlInsertCopyBook)){
-                                        echo '<br> old ID insert CopyBook error: '.mysqli_error($conn);
-                                        header("Location: ../index.php?error=insertCopyBook");
-                                        exit();
+                                for($i=0; $i<(intval($varQuantity)); $i++){
+                                        if(!mysqli_query($conn,$sqlInsertCopyBook)){
+                                                echo '<br> old ID insert CopyBook error: '.mysqli_error($conn);
+                                                header("Location: ../index.php?error=insertCopyBook");
+                                                exit();
+                                        }
                                 }
 
-                                $sqlUpdateQuantity = "UPDATE book set quantity=(quantity+1) where book_id='$idBook[book_id]'";
+                                $sqlUpdateQuantity = "UPDATE book set quantity=(quantity+intval($varQuantity)) where book_id='$idBook[book_id]'";
                                 if(!$conn->query($sqlUpdateQuantity)) {
                                         echo'<br>Update quantity error: ' . mysqli_error($conn);
                                         header ('Location: ../Devolution.php?error=quantity');
