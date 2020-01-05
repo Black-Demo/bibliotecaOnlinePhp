@@ -12,7 +12,7 @@ create table members(
     password_user   varchar(255),
     dni				varchar(255) not null unique,
     phone           int(9),
-    postalNumber    int(5),
+    postalNumber    varchar(5),
     penalty			date,
     total_books_reserved	int default 0,
     librarian		boolean default 0
