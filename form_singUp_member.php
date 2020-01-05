@@ -4,9 +4,6 @@
                 if($_GET['error']=="emptyfield"){
                     echo '<p class="singUp Error">Fill in all fields!</p>';
                 }
-                else if($_GET['success']=='singup'){
-                    echo '<p class="sucessLogin">SUCCESS</p>';
-                }
                         //else if(//El resto de errores)     
             }?>
                 <h1>Sing up</h1>
@@ -43,15 +40,6 @@
                     </div>
                 </div>
                 <div class="contact">
-                    <div class="prefix">
-                        <select name="prefix" id="prefix">
-                            <option value="34">+34</option>
-                            <option value="33">+33</option>
-                            <option value="44">+44</option>
-                            <option value="49">+49</option>
-                            <option value="351">+351</option>
-                        </select>
-                    </div>
                     <div class="txtb">
                         <input type="number" name="phone">
                         <span data-placeholder="Telephone number"></span>

@@ -29,6 +29,8 @@
                 "&lastname2=".$varLastname2."&dni=".$varDNI."&phone=".$varPhone.
                 "&numPostal=".$varNumPostal);
             exit();
+        }else if(strlen($varNumPostal)>5){
+            header("Location: ../form_singUp_member.php?error=postalNumber");
         }else{
             $sqlInsertMember = "INSERT INTO members (
                 name,

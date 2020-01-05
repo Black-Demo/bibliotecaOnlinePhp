@@ -2,36 +2,36 @@
     include 'includes/GlobalsVariables.php';
 ?>
 
-<form method='POST' action='Books/db_insert_book.php'>
+<form method='POST' action='Books/db_insert_book.php' class="registerBook-form">
+    <h1>Insert Book</h1>
     <!--Form for add books to the galery-->
-    <fieldset>
-        <label for='pos'>Position:</label>
-        <input type='number' name='pos' id='pos'>
-        <br><br>
-
-        <label for='title'>Title:</label>
-        <input type='text' name='title' id='title'>
-        <br><br>
-
-        <label for='author'>Author:</label>
-        <input type='text' name='author' id='author'>
-        <br><br>
-
-        <label for='editorial'>Editorial:</label>
+    
+    <div class="txtb">
+        <input type="number" name="pos" id="pos">
+        <span data-placeholder="Position"></span>
+    </div>
+    <div class="txtb">
+        <input type="text" name="title" id="title">
+        <span data-placeholder="Title"></span>
+    </div>
+    <div class="txtb">
+        <input type="text" name="author" id="author">
+        <span data-placeholder="Author"></span>
+    </div>
+    <div class="txtb">
         <input type='text' name='editorial' id='editorial'>
-        <br><br>
-
-        <label for='isbn'>ISBN:</label>
+        <span data-placeholder="Editorial"></span>
+    </div>
+    <div class="txtb">
         <input type= 'number' name='isbn' id='isbn'>
-        <br><br>
-
-        <label for='theme'>Theme</label>
+        <span data-placeholder="ISBN"></span>
+    </div>
+        <label for='theme'>Theme:</label>
         <select name='theme' id='theme'>
         <?php for($i=0; $i < sizeof($themeArray);$i++){ 
             echo "<option value=$themeArray[$i]> $themeArray[$i]</option>";
         } ?>
         </select>
-        <br><br>
 
         <label for='category'>Category:</label>
         <select name='category' id='category'>
@@ -56,15 +56,17 @@
             } ?>
             </optgroup>
         </select>
-        <br><br>
         <label for='language'>Language:</label>
         <select name='language' id='language'>
         <?php for($i = 0; $i<sizeOf($languagesArray); $i++){
             echo "<option value=$languagesArray[$i]>$languagesArray[$i]</option>";
         } ?>
         </select>
-        <br><br>
-    </fieldset>
-    <br>
-    <input type='submit' value='Add Book' name='insert_book' class='btn'>
+        <div class="txtb">
+            <input type="number" name="quantity">
+            <span data-placeholder="Quantity"></span>
+        </div>
+        
+        
+    <input type='submit' value='Add Book' name='insert_book' class='btnA'>
 </form>
