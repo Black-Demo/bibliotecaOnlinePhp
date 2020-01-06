@@ -8,7 +8,8 @@
 
 body {
   min-height: 100vh;
-  background-image: linear-gradient(120deg, #0097f2, #a787ff);
+  /*background-image: linear-gradient(120deg, #0097f2, #a787ff);*/
+  background: #f1f1f1;
 }
 
 footer {
@@ -62,7 +63,8 @@ nav ul li a:hover {
 .barrier {
   width: 99%;
   height: 8px;
-  background: #ffffff;
+  /*background: #ffffff;*/
+  background: #0097f2;
   margin: -5px auto;
   justify-content: center;
   align-items: center;
@@ -147,7 +149,7 @@ nav ul li a:hover {
 
 .login-form {
   width: 360px;
-  background-color: #f1f1f1;
+  background-color: #24252a;
   height: 450px;
   padding: 80px 40px;
   border-radius: 40px;
@@ -172,7 +174,7 @@ nav ul li a:hover {
 
 .txtb input {
   font-size: 15px;
-  color: #333;
+  color: #f1f1f1;
   border: none;
   width: 100%;
   outline: none;
@@ -233,6 +235,7 @@ nav ul li a:hover {
   margin-top: 50px;
   text-align: center;
   font-size: 15px;
+  color: #ffffff;
 }
 
 .bottom-text a {
@@ -241,7 +244,7 @@ nav ul li a:hover {
 
 .singup-form {
   width: 650px;
-  background-color: #f1f1f1;
+  background-color: #24252a;
   height: 490px;
   padding: 80px 40px;
   border-radius: 40px;
@@ -363,7 +366,7 @@ nav ul li a:hover {
   position: absolute;
   width: 14px;
   height: 5px;
-  background: #f1f1f1;
+  background: #24252a;
   transform: skewX(50deg);
   transition: 0.4s linear;
 }

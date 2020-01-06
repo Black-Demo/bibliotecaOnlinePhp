@@ -91,6 +91,7 @@
                                         '0',
                                         '1'
                                 )";
+                                
                                 for($i=0; $i<(intval($varQuantity)); $i++){
                                         if(!mysqli_query($conn,$sqlInsertCopyBook)){
                                                 echo '<br> old ID insert CopyBook error: '.mysqli_error($conn);
