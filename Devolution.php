@@ -2,16 +2,16 @@
     include 'header.php';
 ?>
 <div class="buscadorUsuario">
-    <?php if(!isset($_POST['search'])){ ?>
+    <?php 
+        if(!(isset($_POST['searchDNI']))){
+    ?>
         <form action="Devolution.php" method='POST' class="searchDNI-box">
             <input type="text" class="searchDNI-txt"  placeholder="Dni user" name="dni">
-            <input type="submit" value="search" name="searchDNI_User" class="search-btn">
+            <input type="submit" value="search" name="searchDNI" class="search-btn">
         </form>
     <?php 
-    }
-        if(isset($_POST['search'])){
+        }else{
             $varDni = mysqli_real_escape_string($conn,$_POST['dni']);
-
             $SelectUser = "SELECT dni, name, date_reserve, date_end, title, languages, Copybook_id, user_id from members
                 inner join reservation on member_id = user_id
                 inner join copy_book on Copybook_id = id_copyBook
