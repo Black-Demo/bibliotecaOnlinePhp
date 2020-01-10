@@ -1,7 +1,7 @@
 <?php include'header.php'?>
 
 <form action="Members/db_singIn_member.php" method="post" class="login-form">
-    <h1>Sing in</h1>
+    <h1>Sign in</h1>
     <div class="txtb">
         <input type="text" name="mailuid">
         <span data-placeholder="E-mail..."></span>
