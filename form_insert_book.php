@@ -2,7 +2,7 @@
     include 'includes/GlobalsVariables.php';
 ?>
 
-<form method='POST' action='Books/db_insert_book.php' class="registerBook-form">
+<form method='POST' action='Books/db_insert_book.php' class="registerBook-form" enctype="multipart/form-data">
     <h1>Insert Book</h1>
     <!--Form for add books to the galery-->
     
@@ -62,10 +62,10 @@
             echo "<option value=$languagesArray[$i]>$languagesArray[$i]</option>";
         } ?>
         </select>
-        <div class="txtb">
-            <input type="number" name="quantity">
-            <span data-placeholder="Quantity"></span>
-        </div>
+        <br>
+
+        <input type="file" name="imgBook" id="imgBook">
+        <br>
         
         
     <input type='submit' value='Add Book' name='insert_book' class='btnA'>

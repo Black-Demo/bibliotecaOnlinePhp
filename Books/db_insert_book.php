@@ -9,12 +9,15 @@
                 $varTheme = mysqli_real_escape_string($conn, $_POST['theme']);
                 $varCategory = mysqli_real_escape_string($conn, $_POST['category']);
                 $varLanguage = mysqli_real_escape_string($conn, $_POST['language']);
-                $varQuantity = mysqli_real_escape_string($conn, $_POST['quantity']);
+                $varImg = $_FILES['imgBook']['name'];
                 //isbnCorrect($varISBN);
 
                 //Insert a book, if this have a reference into the table only insert the language
                 //Id book whit the dates 
                 if(!($varAuthor==""||$varTitleBook==""||$varTitleBook==""||$varAuthor==""||$varEditorial==""||$varISBN==""||$varPos=="")){
+                        $final_folder =$_SERVER['DOCUMENT_ROOT']."/tuts/Biblioteca/Books/src/userImg/";
+                        move_uploaded_file($_FILES['imgBook']['tmp_name'],$final_folder.$varImg);
+
                         $sqlSelectIdBook = "SELECT book_id FROM book WHERE title = '$varTitleBook'";
                         $result = mysqli_query($conn, $sqlSelectIdBook);
                         $idBook = mysqli_fetch_assoc($result);
@@ -33,6 +36,7 @@
                                         theme,
                                         category,
                                         quantity
+                                        /*img*/
                                 )VALUES(
                                         '$varPos',
                                         '$varTitleBook',
@@ -41,13 +45,14 @@
                                         '$varISBN',
                                         '$varTheme',
                                         '$varCategory',
-                                        '$varQuantity'
+                                        1
+                                        /*varImg*/
                                 )";
 
                                 if(!mysqli_query($conn,$sqlInsertBook)){
                                         echo ' insert book error: '.mysqli_error($conn);
-                                        header("Location: ../index.php?error=insertBook");
-                                        exit();
+                                       // header("Location: ../index.php?error=insertBook");
+                                        //exit();
                                 }
 
                                 $sqlSelectIdBookNew = "SELECT book_id FROM book WHERE title = '$varTitleBook'";
@@ -59,20 +64,18 @@
                                         languages,
                                         reserved,
                                         available
-
                                 )VALUES(
                                         '$idBookNew[book_id]',
                                         '$varLanguage',
                                         '0',
                                         '1'
                                 )";
-                                for($i=0; $i<(intval($varQuantity)); $i++){
-                                        if(!mysqli_query($conn,$sqlInsertCopyBook)){
-                                                echo '<br>new ID insert CopyBook error: '.mysqli_error($conn);
-                                                header("Location: ../index.php?error=insertCopybook");
-                                                exit();
-                                        }
+                                if(!mysqli_query($conn,$sqlInsertCopyBook)){
+                                        echo '<br>new ID insert CopyBook error: '.mysqli_error($conn);
+                                        header("Location: ../index.php?error=insertCopybook");
+                                        exit();
                                 }
+                                
                                 
 
                                 header("Location: ../index.php?success=book");
@@ -92,15 +95,13 @@
                                         '1'
                                 )";
                                 
-                                for($i=0; $i<(intval($varQuantity)); $i++){
-                                        if(!mysqli_query($conn,$sqlInsertCopyBook)){
-                                                echo '<br> old ID insert CopyBook error: '.mysqli_error($conn);
-                                                header("Location: ../index.php?error=insertCopyBook");
-                                                exit();
-                                        }
+                                if(!mysqli_query($conn,$sqlInsertCopyBook)){
+                                        echo '<br> old ID insert CopyBook error: '.mysqli_error($conn);
+                                        header("Location: ../index.php?error=insertCopyBook");
+                                        exit();
                                 }
 
-                                $sqlUpdateQuantity = "UPDATE book set quantity=(quantity+intval($varQuantity)) where book_id='$idBook[book_id]'";
+                                $sqlUpdateQuantity = "UPDATE book set quantity=(quantity+1) where book_id='$idBook[book_id]'";
                                 if(!$conn->query($sqlUpdateQuantity)) {
                                         echo'<br>Update quantity error: ' . mysqli_error($conn);
                                         header ('Location: ../Devolution.php?error=quantity');
@@ -116,7 +117,6 @@
                         exit();
                 }
         }
-        //conection close
         
 
 
