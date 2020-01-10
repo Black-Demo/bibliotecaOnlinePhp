@@ -32,8 +32,8 @@
                </nav>
                <div class="header-login">
                     <?php if(!isset($_SESSION['userId'])){ ?>
-                         <a href="form_singIn_member.php" class="sing-in button">Sing in</a>
-                         <a href="form_singUp_member.php" class="sing-up button">Sing Up</a>
+                         <a href="form_singIn_member.php" class="sing-in button">Sign in</a>
+                         <a href="form_singUp_member.php" class="sing-up button">Sign Up</a>
                     <?php }?>
                          <form action="Members/session_logOut_member.php" method="post" class="log-out">
                               <button type="submit" class="btn">Log out</button>

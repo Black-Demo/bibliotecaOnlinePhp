@@ -6,7 +6,7 @@
                 }
                         //else if(//El resto de errores)     
             }?>
-                <h1>Sing up</h1>
+                <h1>Sign up</h1>
                 <div class="userId">
                     <div class="txtb">
                         <input type="email" name="email">
