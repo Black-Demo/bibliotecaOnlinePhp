@@ -7,7 +7,7 @@
     ?>
         <form action="Devolution.php" method='POST' class="searchDNI-box">
             <input type="text" class="searchDNI-txt"  placeholder="Dni user" name="dni">
-            <input type="submit" value="search" name="searchDNI" class="search-btn">
+            <input type="submit" value="search" name="searchDNI" class="searchDNI-btn">
         </form>
     <?php 
         }else{

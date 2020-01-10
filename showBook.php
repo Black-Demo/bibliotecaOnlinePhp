@@ -24,15 +24,15 @@ if (isset($_POST['select_book'])) {
         echo 'Languages: '.htmlspecialchars($book['languages']).'<br>';
         if (isset($_SESSION['userId'])){ 
             if(strtotime($_SESSION['penalty'])< strtotime(date ("Y-m-d",time())))
-            echo "
-            <div class='buttonBook'>
-                <!--If the user are register he can reserve-->
-                <form name='libro' method='POST' action='Reservations/reserve.php'>
-                    <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
-                    <input type='hidden' id='languages' name='languages' value='$book[languages]'>
-                    <input type='submit' name='Reservation' value='Reservation' class='btn-blue'>
-                </form>
-                <!--If the user are the librarian he can delete and update a book-->";
+                echo "
+                <div class='buttonBook'>
+                    <!--If the user are register he can reserve-->
+                    <form name='libro' method='POST' action='Reservations/reserve.php'>
+                        <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
+                        <input type='hidden' id='languages' name='languages' value='$book[languages]'>
+                        <input type='submit' name='Reservation' value='Reservation' class='btn-blue'>
+                    </form>
+                    <!--If the user are the librarian he can delete and update a book-->";
              if($_SESSION['librarian']=='1'){
                 echo "
                     <form name='libro' method='POST' action='form_update_book.php'>
