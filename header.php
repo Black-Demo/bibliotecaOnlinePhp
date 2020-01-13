@@ -7,6 +7,8 @@
      <head>          
           <title>Library</title>
           <link rel="stylesheet" href="./style.css">
+          <script src="js\formStyle.js" async></script>
+
           <script src="https://kit.fontawesome.com/101380c162.js" crossorigin="anonymous"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
      </head>
@@ -32,8 +34,8 @@
                </nav>
                <div class="header-login">
                     <?php if(!isset($_SESSION['userId'])){ ?>
-                         <a href="form_singIn_member.php" class="sing-in button">Sign in</a>
-                         <a href="form_singUp_member.php" class="sing-up button">Sign Up</a>
+                         <a href="form_signIn_member.php" class="sing-in button">Sign in</a>
+                         <a href="form_signUp_member.php" class="sing-up button">Sign Up</a>
                     <?php }?>
                          <form action="Members/session_logOut_member.php" method="post" class="log-out">
                               <button type="submit" class="btn">Log out</button>
