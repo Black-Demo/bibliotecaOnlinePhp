@@ -8,7 +8,7 @@ if (isset($_POST['select_book'])) {
     if (empty($_POST['book_search']))
         echo 'error texto vacio';
 
-    $selectBook = "SELECT DISTINCT book_id,title,author,editorial,theme,category,languages FROM book 
+    $selectBook = "SELECT DISTINCT book_id,title,author,editorial,theme,category,languages,img FROM book 
             INNER JOIN copy_book ON book_id = originalBook_id
             WHERE title LIKE '%$_POST[book_search]%' AND available = 1 AND reserved = 0
             ORDER BY author ";
@@ -24,10 +24,9 @@ if (isset($_POST['select_book'])) {
                     <div class="imgBx" data-text="<?php echo htmlspecialchars($book['title']); ?>" >
                         <?php 
                             if (empty($book['img']))
-                                $img = 'no_img.jpg';
+                                $img = 'no-img.jpg';
                             else
                                $img = $book['img'];
-                    
 
                             $ruta = $_SERVER['SERVER_NAME'].'/tuts/Biblioteca/src/userImg/'.$img;
                         ?>

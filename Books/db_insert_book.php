@@ -35,7 +35,7 @@
                                         ISBN,
                                         theme,
                                         category,
-                                        quantity
+                                        quantity,
                                         img
                                 )VALUES(
                                         '$varPos',
@@ -77,7 +77,7 @@
                                         exit();
                                 }
                                 
-                                
+                                echo 'test';
 
                                 header("Location: ../index.php?success=book");
                                 exit();
