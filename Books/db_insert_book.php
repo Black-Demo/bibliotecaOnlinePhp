@@ -15,7 +15,7 @@
                 //Insert a book, if this have a reference into the table only insert the language
                 //Id book whit the dates 
                 if(!($varAuthor==""||$varTitleBook==""||$varTitleBook==""||$varAuthor==""||$varEditorial==""||$varISBN==""||$varPos=="")){
-                        $final_folder =$_SERVER['DOCUMENT_ROOT']."/tuts/Biblioteca/Books/src/userImg/";
+                        $final_folder =$_SERVER['DOCUMENT_ROOT']."/tuts/Biblioteca/src/userImg/";
                         move_uploaded_file($_FILES['imgBook']['tmp_name'],$final_folder.$varImg);
 
                         $sqlSelectIdBook = "SELECT book_id FROM book WHERE title = '$varTitleBook'";
@@ -36,7 +36,7 @@
                                         theme,
                                         category,
                                         quantity
-                                        /*img*/
+                                        img
                                 )VALUES(
                                         '$varPos',
                                         '$varTitleBook',
@@ -45,14 +45,14 @@
                                         '$varISBN',
                                         '$varTheme',
                                         '$varCategory',
-                                        1
-                                        /*varImg*/
+                                        1,
+                                        '$varImg'
                                 )";
 
                                 if(!mysqli_query($conn,$sqlInsertBook)){
                                         echo ' insert book error: '.mysqli_error($conn);
-                                       // header("Location: ../index.php?error=insertBook");
-                                        //exit();
+                                        header("Location: ../index.php?error=insertBook");
+                                        exit();
                                 }
 
                                 $sqlSelectIdBookNew = "SELECT book_id FROM book WHERE title = '$varTitleBook'";
@@ -70,6 +70,7 @@
                                         '0',
                                         '1'
                                 )";
+
                                 if(!mysqli_query($conn,$sqlInsertCopyBook)){
                                         echo '<br>new ID insert CopyBook error: '.mysqli_error($conn);
                                         header("Location: ../index.php?error=insertCopybook");
@@ -120,7 +121,9 @@
         
 
 
-        //serach if the isbn is correct
+        /**
+         * !See if the ISBN is correct
+         */
 
         function isbnCorrect($isbn){
 

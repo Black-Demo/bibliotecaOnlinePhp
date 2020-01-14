@@ -16,7 +16,7 @@ create table members(
     penalty			date,
     total_books_reserved	int default 0,
     librarian		boolean default 0
-);
+); 
 
 create table book(
     book_id         int auto_increment primary key,
@@ -28,7 +28,8 @@ create table book(
     theme           varchar(45),
     category        varchar(45),
     FirtsAddBookDate     datetime default current_timestamp,
-    quantity        int
+    quantity        int,
+    img				varchar(255)
 );
 
 create table copy_book(

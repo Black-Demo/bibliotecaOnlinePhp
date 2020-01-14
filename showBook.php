@@ -15,12 +15,23 @@ if (isset($_POST['select_book'])) {
 
     $books = mysqli_fetch_all(mysqli_query($conn, $selectBook), MYSQLI_ASSOC);
 
+    $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://':'http://';
+
     foreach ($books as $book) {
 ?>
             <div class="container">
                 <div class="card">
                     <div class="imgBx" data-text="<?php echo htmlspecialchars($book['title']); ?>" >
-                        <img src="#" alt="<?php echo htmlspecialchars($book['title']); ?>">
+                        <?php 
+                            if (empty($book['img']))
+                                $img = 'no_img.jpg';
+                            else
+                               $img = $book['img'];
+                    
+
+                            $ruta = $_SERVER['SERVER_NAME'].'/tuts/Biblioteca/src/userImg/'.$img;
+                        ?>
+                        <img src="<?php echo $protocol.$ruta; ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
                     </div>
                     <div class="content">
                         <div>
@@ -48,7 +59,7 @@ if (isset($_POST['select_book'])) {
                                                     <form name='libro' method='POST' action='form_update_book.php'>
                                                         <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
                                                         <input type='hidden' id='languages' name='languages' value='$book[languages]'>
-                                                        <input type='submit' name='Update' value='Update' class='btn-green'>
+                                                        <input type='submit' name='Update' value='Update' class='btn-blue'>
                                                     </form>
                                                     <form name='libro' method='POST' action='Books/db_delete_book.php' class='form delete book'>
                                                         <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
@@ -57,6 +68,14 @@ if (isset($_POST['select_book'])) {
                                                     </form>
                                                 </div>";
                                             } 
+
+                                            echo "
+                                                <form name='libro' method='POST' action='form_update_book.php'>
+                                                    <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
+                                                    <input type='hidden' id='languages' name='languages' value='$book[languages]'>
+                                                    <input type='submit' name='Buy' value='Buy' class='btn-green'>
+                                                </form>
+                                            ";
                                         }
                                 ?>
                             </p>
