@@ -1,5 +1,5 @@
 <?php require 'header.php'; ?>
-            <form action="Members/db_singUp_member.php" method='post' class="singup-form">
+            <form action="Members/db_signUp_member.php" method='post' class="singup-form">
             <?php if(isset($_GET['error'])){
                 if($_GET['error']=="emptyfield"){
                     echo '<p class="singUp Error">Fill in all fields!</p>';

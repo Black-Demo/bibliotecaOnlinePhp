@@ -45,14 +45,14 @@
             
             $stmt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($stmt,$sqlInsertMember)){
-                header("Location: ../form_singUp_member.php?error=sqlError");
+                header("Location: ../form_signUp_member.php?error=sqlError");
             }else{
                 $hashPwd = password_hash($varPassw, PASSWORD_DEFAULT);
                 mysqli_stmt_bind_param($stmt,"ssssssss",
                  $varName,$varLastname1,$varLastname2,$varEmail,$hashPwd,$varDNI,$varPhone,$varNumPostal);
                 
                 mysqli_stmt_execute($stmt);
-                header("Location: ../form_singUp_member.php?success=singup");
+                header("Location: ../form_signUp_member.php?success=singup");
                 exit();
             }
         }
@@ -60,6 +60,6 @@
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
     }else{
-        header("Location: ../form_singUp_member.php");
+        header("Location: ../form_signUp_member.php");
         exit();
     }
