@@ -34,6 +34,13 @@ header {
 
 .logo {
   cursor: pointer;
+  margin-left: 5px;
+}
+
+.logo img {
+  height: 60px;
+  width: 60px;
+  border-radius: 40px;
 }
 
 nav ul {
@@ -468,4 +475,9 @@ nav ul li a:hover {
   background: #0097f2;
   text-transform: uppercase;
   color: #ffffff;
+}
+
+/**TODO:Medidas adaptadas*/
+
+@media (max-width: 940px) {
 }

@@ -7,15 +7,15 @@
      <head>          
           <title>Library</title>
           <link rel="stylesheet" href="./style.css">
-          <script src="js\formStyle.js" async></script>
-
+         
           <script src="https://kit.fontawesome.com/101380c162.js" crossorigin="anonymous"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+          <script src="js\formStyle.js" async></script>
      </head>
      <body>
           <header>
                <a href="index.php" class="logo">
-                    <img src="src/logo.jpg" alt="logo">
+                    <img src="src/logos/logo.jpg" alt="logo">
                </a>
                <nav class="nav header main">
                     <ul>
