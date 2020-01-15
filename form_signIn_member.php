@@ -14,7 +14,7 @@
     <button type="submit" name="login-submit" class="logbtn">Login</button>
     <div class="bottom-text">
         Don't have account?
-        <a href="form_singUp_member.php">Sing up</a>
+        <a href="form_signUp_member.php">Sing up</a>
     </div>
 </form>
 
