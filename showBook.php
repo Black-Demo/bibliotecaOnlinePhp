@@ -16,8 +16,9 @@ if (isset($_POST['select_book'])) {
     $books = mysqli_fetch_all(mysqli_query($conn, $selectBook), MYSQLI_ASSOC);
 
     $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://':'http://';
-
-    foreach ($books as $book) {
+?>
+    <div class="section">
+    <?php foreach ($books as $book) {
 ?>
             <div class="container">
                 <div class="card">
@@ -34,13 +35,16 @@ if (isset($_POST['select_book'])) {
                     </div>
                     <div class="content">
                         <div>
-                            <h3><?php htmlspecialchars($book['title']) ?></h3>
+                            <h3><?php echo htmlspecialchars($book['title']) ?></h3>
                             <p>
                                 <?php   echo 'Author: '.htmlspecialchars($book['author']).'<br>';
                                         echo 'Editorial: '.htmlspecialchars($book['editorial']).'<br>';
                                         echo 'Theme: '.htmlspecialchars($book['theme']).'<br>';
                                         echo 'Category: '.htmlspecialchars($book['category']).'<br>';
                                         echo 'Languages: '.htmlspecialchars($book['languages']).'<br>';
+                                ?>
+                            </p>
+                            <?php
                                         if (isset($_SESSION['userId'])){ 
                                             if(strtotime($_SESSION['penalty'])< strtotime(date ("Y-m-d",time()))){
                                                 echo "
@@ -64,24 +68,24 @@ if (isset($_POST['select_book'])) {
                                                         <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
                                                         <input type='hidden' id='languages' name='languages' value='$book[languages]'>
                                                         <input type='submit' name = 'Delete' value='Delete' class='btn-red'>
-                                                    </form>
-                                                </div>";
+                                                    </form>";
                                             } 
 
                                             echo "
-                                                <form name='libro' method='POST' action='form_update_book.php'>
-                                                    <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
-                                                    <input type='hidden' id='languages' name='languages' value='$book[languages]'>
-                                                    <input type='submit' name='Buy' value='Buy' class='btn-green'>
-                                                </form>
-                                            ";
+                                                    <form name='libro' method='POST' action='form_update_book.php'>
+                                                        <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
+                                                        <input type='hidden' id='languages' name='languages' value='$book[languages]'>
+                                                        <input type='submit' name='Buy' value='Buy' class='btn-green'>
+                                                    </form>
+                                                </div>";
                                         }
                                 ?>
-                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 <?php
-    }
+    }?>
+    </div><?php
+    include 'footer.php';
 }?>
