@@ -28,3 +28,5 @@ if (isset($_POST['update_book'])) {
     header('Location: ../index.php?success=updateBook');
     exit();
 }
+
+?>

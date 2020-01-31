@@ -1,5 +1,5 @@
-<?php include '../includes/conection.php' ?>
 <?php
+        include '../includes/conection.php';
         if(isset($_POST['insert_book'])){
                 $varPos = mysqli_real_escape_string($conn,$_POST['pos']);
                 $varTitleBook = mysqli_real_escape_string($conn, $_POST['title']);
@@ -10,6 +10,7 @@
                 $varCategory = mysqli_real_escape_string($conn, $_POST['category']);
                 $varLanguage = mysqli_real_escape_string($conn, $_POST['language']);
                 $varImg = $_FILES['imgBook']['name'];
+                $varPrice = mysqli_real_escape_string($conn,$_POST['price']);
                 //isbnCorrect($varISBN);
 
                 //Insert a book, if this have a reference into the table only insert the language
@@ -23,8 +24,8 @@
                         $idBook = mysqli_fetch_assoc($result);
 
                         $sqlCountBook = "SELECT COUNT(*) as total FROM book  WHERE book_id = '$idBook[book_id]'";
-                        $test = mysqli_query($conn, $sqlCountBook);
-                        $numberBook = mysqli_fetch_assoc($test);
+                        $totalBooks = mysqli_query($conn, $sqlCountBook);
+                        $numberBook = mysqli_fetch_assoc($totalBooks);
 
                         if($numberBook['total']==0){
                                 $sqlInsertBook = "INSERT INTO book(
@@ -36,7 +37,8 @@
                                         theme,
                                         category,
                                         quantity,
-                                        img
+                                        img,
+                                        price
                                 )VALUES(
                                         '$varPos',
                                         '$varTitleBook',
@@ -46,7 +48,8 @@
                                         '$varTheme',
                                         '$varCategory',
                                         1,
-                                        '$varImg'
+                                        '$varImg',
+                                        '$varPrice'
                                 )";
 
                                 if(!mysqli_query($conn,$sqlInsertBook)){
@@ -76,8 +79,6 @@
                                         header("Location: ../index.php?error=insertCopybook");
                                         exit();
                                 }
-                                
-                                echo 'test';
 
                                 header("Location: ../index.php?success=book");
                                 exit();

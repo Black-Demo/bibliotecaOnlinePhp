@@ -11,7 +11,7 @@
             $selectMember = "SELECT * FROM members WHERE e_mail = ?;";
             $stmt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($stmt,$selectMember)){
-                header("Location: ../index.php?error=sqlError");
+                header("Location: ../index.php?error=SelectMemberError");
                 exit();
             }else{
                 mysqli_stmt_bind_param($stmt,"s",$varEmailUid);

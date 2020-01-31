@@ -2,6 +2,13 @@ drop database if exists library;
 create database library;
 use  library;
 
+create table Log(
+	date_of_log		datetime,
+    user			int,
+    text_log		varchar(255),/*Error text*/
+    error_place		varchar(255)/*Web error*/
+);
+
 create table members(
 /*Tabla miembros --> Tabla independiente*/
     member_id       int auto_increment primary key,
@@ -29,7 +36,8 @@ create table book(
     category        varchar(45),
     FirtsAddBookDate     datetime default current_timestamp,
     quantity        int,
-    img				varchar(255)
+    img				varchar(255),
+    price			float(10,2)
 );
 
 create table copy_book(
@@ -48,8 +56,6 @@ create table reservation(
     Copybook_id     int,
     user_id       int,
     date_reserve    datetime default current_timestamp,
-    #date_get		datetime,
-    #date_max		datetime,
     date_end        datetime,
     date_devolution   datetime,
     foreign key (Copybook_id) references copy_book (id_copyBook)
@@ -58,3 +64,24 @@ create table reservation(
         on delete no action on update cascade
 );
 
+create table cart(
+	id_cart			int auto_increment primary key,
+    id_user			int,
+    date_create		datetime default current_timestamp,/*moment when you insert the firts product*/
+    date_end		datetime,/*moment when you finish the trassation*/
+    finished		boolean default false,
+    total_products	int default 0
+);	
+
+create table cart_product(
+	id_item			int auto_increment primary key ,
+	id_product		int,/*id of the copy of the book*/
+    title           varchar(255),
+    quantity		int,
+    date_insert		datetime default current_timestamp,/*date when you insert the product into the cart*/
+    cart_id			int,
+    foreign key (cart_id) references cart (id_cart) 
+		on delete no action on update cascade,
+	foreign key (id_product) references copy_book (id_copyBook)
+		on delete no action on update cascade
+);
