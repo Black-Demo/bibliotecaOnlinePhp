@@ -35,15 +35,19 @@ if (isset($_POST['select_book'])) {
                     </div>
                     <div class="content">
                         <div>
+                            <div class="info">
                             <h3><?php echo htmlspecialchars($book['title']) ?></h3>
-                            <p>
-                                <?php   echo 'Author: '.htmlspecialchars($book['author']).'<br>';
-                                        echo 'Editorial: '.htmlspecialchars($book['editorial']).'<br>';
-                                        echo 'Theme: '.htmlspecialchars($book['theme']).'<br>';
-                                        echo 'Category: '.htmlspecialchars($book['category']).'<br>';
-                                        echo 'Languages: '.htmlspecialchars($book['languages']).'<br>';
-                                ?>
-                            </p>
+                                <div class="dates">
+                                    <p>
+                                        <?php   echo 'Author: '.htmlspecialchars($book['author']).'<br>';
+                                                echo 'Editorial: '.htmlspecialchars($book['editorial']).'<br>';
+                                                echo 'Theme: '.htmlspecialchars($book['theme']).'<br>';
+                                                echo 'Category: '.htmlspecialchars($book['category']).'<br>';
+                                                echo 'Languages: '.htmlspecialchars($book['languages']).'<br>';
+                                        ?>
+                                    </p>
+                            </div>
+                        </div>
                             <?php
                                         if (isset($_SESSION['userId'])){ 
                                             if(strtotime($_SESSION['penalty'])< strtotime(date ("Y-m-d",time()))){
@@ -51,31 +55,32 @@ if (isset($_POST['select_book'])) {
                                                 <div class='buttonBook'>
                                                     <!--If the user are register he can reserve-->
                                                     <form name='libro' method='POST' action='Reservations/reserve.php'>
-                                                        <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
-                                                        <input type='hidden' id='languages' name='languages' value='$book[languages]'>
-                                                        <input type='submit' name='Reservation' value='Reservation' class='btn-blue'>
-                                                    </form>
-                                                    <!--If the user are the librarian he can delete and update a book-->";
+                                                        <input type='hidden'  name='idBook' value='$book[book_id]'>
+                                                        <input type='hidden'  name='languages' value='$book[languages]'>
+                                                        <input type='submit' name='Reservation' value='Reservation' class='btnBook btn-blue'>
+                                                    </form>";
+                                                    
                                             }
+                                            /**If the user are the librarian he can delete and update a book*/
                                             if($_SESSION['librarian']=='1'){
                                                 echo "
                                                     <form name='libro' method='POST' action='form_update_book.php'>
-                                                        <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
-                                                        <input type='hidden' id='languages' name='languages' value='$book[languages]'>
-                                                        <input type='submit' name='Update' value='Update' class='btn-blue'>
+                                                        <input type='hidden'  name='idBook' value='$book[book_id]'>
+                                                        <input type='hidden'  name='languages' value='$book[languages]'>
+                                                        <input type='submit' name='Update' value='Update' class='btnBook btn-blue'>
                                                     </form>
                                                     <form name='libro' method='POST' action='Books/db_delete_book.php' class='form delete book'>
-                                                        <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
-                                                        <input type='hidden' id='languages' name='languages' value='$book[languages]'>
-                                                        <input type='submit' name = 'Delete' value='Delete' class='btn-red'>
+                                                        <input type='hidden'  name='idBook' value='$book[book_id]'>
+                                                        <input type='hidden'  name='languages' value='$book[languages]'>
+                                                        <input type='submit' name = 'Delete' value='Delete' class='btnBook btn-red'>
                                                     </form>";
                                             } 
 
                                             echo "
-                                                    <form name='libro' method='POST' action='form_update_book.php'>
-                                                        <input type='hidden' id='idBook' name='idBook' value='$book[book_id]'>
-                                                        <input type='hidden' id='languages' name='languages' value='$book[languages]'>
-                                                        <input type='submit' name='Buy' value='Buy' class='btn-green'>
+                                                    <form name='libro' method='POST' action='cart/db_insert_cart.php'>
+                                                        <input type='hidden' name='idBook' value='$book[book_id]'>
+                                                        <input type='hidden' name='languages' value='$book[languages]'>
+                                                        <input type='submit' name='Buy' value='Buy' class='btnBook btn-blue'>
                                                     </form>
                                                 </div>";
                                         }
