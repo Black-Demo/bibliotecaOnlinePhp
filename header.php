@@ -36,7 +36,11 @@
                     <?php if(!isset($_SESSION['userId'])){ ?>
                          <a href="form_signIn_member.php" class="sing-in button">Sign in</a>
                          <a href="form_signUp_member.php" class="sing-up button">Sign Up</a>
-                    <?php }?>
+                    <?php }else{?>
+                         <a href="shoppingCard.php" class="shoppingCard">
+                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                         </a>
+                    <?php } ?>
                          <form action="Members/session_logOut_member.php" method="post" class="log-out">
                               <button type="submit" class="btn">Log out</button>
                          </form>
