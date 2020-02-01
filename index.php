@@ -2,10 +2,10 @@
     require 'header.php';
 ?>
 
-    <main>
-        <div class="wrapper main">
-            <section class="section default">
-                <?php
+<main>
+    <div class="wrapper main">
+        <section class="section default">
+            <?php
                     if(isset($_SESSION['userId'])){
                         if($_SESSION['librarian']=='1')
                             include 'form_insert_book.php';
@@ -15,11 +15,11 @@
                         echo '<p>You are logged out!</p>';
                     }
                 ?>
-                
-                
-            </section>
-        </div>
-    </main>
+
+
+        </section>
+    </div>
+</main>
 
 <?php
     require 'footer.php';

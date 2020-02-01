@@ -17,13 +17,13 @@ if (isset($_POST['select_book'])) {
 
     $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://':'http://';
 ?>
-    <div class="section">
+<div class="section">
     <?php foreach ($books as $book) {
 ?>
-            <div class="container">
-                <div class="card">
-                    <div class="imgBx" data-text="<?php echo htmlspecialchars($book['title']); ?>" >
-                        <?php 
+    <div class="container">
+        <div class="card">
+            <div class="imgBx" data-text="<?php echo htmlspecialchars($book['title']); ?>">
+                <?php 
                             if (empty($book['img']))
                                 $img = 'no-img.jpg';
                             else
@@ -31,24 +31,24 @@ if (isset($_POST['select_book'])) {
 
                             $ruta = $_SERVER['SERVER_NAME'].'/tuts/Biblioteca/src/userImg/'.$img;
                         ?>
-                        <img src="<?php echo $protocol.$ruta; ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
-                    </div>
-                    <div class="content">
-                        <div>
-                            <div class="info">
-                            <h3><?php echo htmlspecialchars($book['title']) ?></h3>
-                                <div class="dates">
-                                    <p>
-                                        <?php   echo 'Author: '.htmlspecialchars($book['author']).'<br>';
+                <img src="<?php echo $protocol.$ruta; ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
+            </div>
+            <div class="content">
+                <div>
+                    <div class="info">
+                        <h3><?php echo htmlspecialchars($book['title']) ?></h3>
+                        <div class="dates">
+                            <p>
+                                <?php   echo 'Author: '.htmlspecialchars($book['author']).'<br>';
                                                 echo 'Editorial: '.htmlspecialchars($book['editorial']).'<br>';
                                                 echo 'Theme: '.htmlspecialchars($book['theme']).'<br>';
                                                 echo 'Category: '.htmlspecialchars($book['category']).'<br>';
                                                 echo 'Languages: '.htmlspecialchars($book['languages']).'<br>';
                                         ?>
-                                    </p>
-                            </div>
+                            </p>
                         </div>
-                            <?php
+                    </div>
+                    <?php
                                         if (isset($_SESSION['userId'])){ 
                                             if(strtotime($_SESSION['penalty'])< strtotime(date ("Y-m-d",time()))){
                                                 echo "
@@ -85,12 +85,12 @@ if (isset($_POST['select_book'])) {
                                                 </div>";
                                         }
                                 ?>
-                        </div>
-                    </div>
                 </div>
             </div>
-<?php
+        </div>
+    </div>
+    <?php
     }?>
-    </div><?php
+</div><?php
     include 'footer.php';
 }?>

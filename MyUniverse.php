@@ -1,28 +1,28 @@
 <?php 
     include 'header.php';
 ?>
-    <div id="profile">
-        <div class="user-identity">
-            <i class="iconProfile">icon</i>
-            <p class="emailUser"><?php echo $_SESSION['email'];?></p>
-        </div>
-        <div class="user-library-information">
-            <p class="total-books">
-                <?php echo $_SESSION['total_books']; ?> Libros pendientes de devolución
-            </p>
-            <p class="penalty">
-            <?php if(!(strtotime($_SESSION['penalty'])< strtotime(date ("Y-m-d",time())))){ ?>
-                Usted no podra reservar ningun libro hasta: <?php echo $_SESSION['penalty']; ?>
-            <?php }else{ ?>
-                No tienes ninguna penalización.
-            <?php } ?>
-            </p>
-        </div>
+<div id="profile">
+    <div class="user-identity">
+        <i class="iconProfile">icon</i>
+        <p class="emailUser"><?php echo $_SESSION['email'];?></p>
     </div>
-    <div id="borrows">
-        <div class="pending">
-            <p>Libros pendientes de devolucion:</p>
-            <?php 
+    <div class="user-library-information">
+        <p class="total-books">
+            <?php echo $_SESSION['total_books']; ?> Libros pendientes de devolución
+        </p>
+        <p class="penalty">
+            <?php if(!(strtotime($_SESSION['penalty'])< strtotime(date ("Y-m-d",time())))){ ?>
+            Usted no podra reservar ningun libro hasta: <?php echo $_SESSION['penalty']; ?>
+            <?php }else{ ?>
+            No tienes ninguna penalización.
+            <?php } ?>
+        </p>
+    </div>
+</div>
+<div id="borrows">
+    <div class="pending">
+        <p>Libros pendientes de devolucion:</p>
+        <?php 
                 $selectReserve = "SELECT book.*, date_reserve, date_end FROM reservation
                     INNER JOIN copy_book on Copybook_id = id_copyBook
                     INNER JOIN book on originalBook_id = book_id
@@ -39,8 +39,8 @@
                     echo '<br>';
                 }
             ?>
-        </div>
     </div>
+</div>
 <?php
     include 'footer.php';
 ?>
