@@ -8,10 +8,13 @@
 <head>
     <title>Library</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <script src="https://kit.fontawesome.com/101380c162.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js\formStyle.js" async></script>
+    <script src="js\Cart.js" asyn></script>
 </head>
 
 <body>
