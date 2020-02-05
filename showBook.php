@@ -5,10 +5,13 @@ ini_set('include_path',$_SERVER['DOCUMENT_ROOT'].'/tuts/Biblioteca');
 include 'header.php';
 
 if (isset($_POST['select_book'])) {
-    if (empty($_POST['book_search']))
-        echo 'error texto vacio';
+    if (empty($_POST['book_search'])){
+        echo '<p>error texto vacio</p>';
+        return;
+    }
+        
 
-    $selectBook = "SELECT DISTINCT book_id,title,author,editorial,theme,category,languages,img FROM book 
+    $selectBook = "SELECT DISTINCT book_id,title,author,editorial,theme,category,languages,img,price FROM book 
             INNER JOIN copy_book ON book_id = originalBook_id
             WHERE title LIKE '%$_POST[book_search]%' AND available = 1 AND reserved = 0
             ORDER BY author ";
@@ -44,6 +47,7 @@ if (isset($_POST['select_book'])) {
                                                 echo 'Theme: '.htmlspecialchars($book['theme']).'<br>';
                                                 echo 'Category: '.htmlspecialchars($book['category']).'<br>';
                                                 echo 'Languages: '.htmlspecialchars($book['languages']).'<br>';
+                                                echo 'Price: '.htmlspecialchars($book['price']).' €<br>';
                                         ?>
                             </p>
                         </div>
