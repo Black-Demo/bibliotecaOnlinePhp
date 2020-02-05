@@ -11,40 +11,21 @@
             AND available = 1 AND reserved = 0 Limit 1";
         $varCopyBook = mysqli_fetch_assoc(mysqli_query($conn, $sqlCopyIdBook));
 
-        $cartID = cart();
+        cart();
 
-        $insertProduct = "INSERT INTO cart_product(
-            id_product,
-            title,
-            quantity,
-            cart_id
-        ) VALUES (
-            '$varCopyBook[id_copyBook]',
-            '$varCopyBook[title]',
-            '1',
-            '$cartID'
-        )";
+         $cartID = chargeCart();
 
-        if(!mysqli_query($conn,$insertProduct)){
-            $error = '"insert product to the cart error: ". mysqli_error($conn)';
-            logger($_SESSION['userId'],$error,$web);
-
-            header("Location: ../index.php?error=insertProductBookIntocart");
-            exit();
-        }
+        product($cartID, $varCopyBook);
 
         //deleteBook();
         codified($varCopyBook['id_copyBook'],$varCopyBook['title'],$varCopyBook['price'],1,$varCopyBook['img']);
-
-        header("Location: ../shoppingCard.php?success=success");
-        exit();
     }
 
     function cart(){
 
         include '../includes/conection.php';
         
-        $cart_finished = "SELECT count(*) as total ,id_cart  from cart where finished =  0";
+        $cart_finished = "SELECT count(*) as total  from cart where finished =  0";
         $totalCartsFinished = mysqli_fetch_assoc(mysqli_query($conn,$cart_finished));
         if($totalCartsFinished['total'] != 0){
             /**
@@ -73,7 +54,36 @@
                 exit();
             }
         }
-        return $totalCartsFinished['id_cart'];
+        
+    }
+
+    function product($cartID, $varCopyBook){
+        include '../includes/conection.php';
+        $insertProduct = "INSERT INTO cart_product(
+            id_product,
+            title,
+            quantity,
+            cart_id
+        ) VALUES (
+            '$varCopyBook[id_copyBook]',
+            '$varCopyBook[title]',
+            '1',
+            '$cartID'
+        )";
+
+        if(!mysqli_query($conn,$insertProduct)){
+            //$error = '"insert product to the cart error: ". mysqli_error($conn)';
+            //logger($_SESSION['userId'],$error,$web);
+            header("Location: ../index.php?error=insertProductBookIntocart");
+            exit();
+        }
+    }
+
+    function chargeCart(){
+        include '../includes/conection.php';
+        $cart = "SELECT id_cart  from cart where finished =  0";
+        $totalCart = mysqli_fetch_assoc(mysqli_query($conn,$cart));
+        return $totalCart['id_cart'];
     }
 
     function deleteBook(){
@@ -97,11 +107,15 @@
         $product -> title = $title;
         $product -> quantity = $quantity;
         $product -> price = $price;
+        $product -> user = $_SESSION['userId'];
 
         $JSONproduct = json_encode($product);
         echo "
-            <script>localStorage.setItem('$id','$JSONproduct')</script>   
-        ";
+            <script>
+                localStorage.setItem('$id','$JSONproduct')
+                window.location = '../shoppingCard.php';
+            </script>   
+        "; 
     }
 
 ?>
