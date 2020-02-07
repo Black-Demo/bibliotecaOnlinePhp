@@ -5,7 +5,7 @@
 
     if(isset($_POST['Buy'])){
 
-        $sqlCopyIdBook = "SELECT id_copyBook, title, price, img FROM copy_book
+        $sqlCopyIdBook = "SELECT book_id,id_copyBook, title, price, img, author FROM copy_book
             INNER JOIN book ON originalBook_id = book_id
             WHERE languages = '$_POST[languages]' AND originalBook_id = '$_POST[idBook]'
             AND available = 1 AND reserved = 0 Limit 1";
@@ -18,7 +18,7 @@
         product($cartID, $varCopyBook);
 
         //deleteBook();
-        codified($varCopyBook['id_copyBook'],$varCopyBook['title'],$varCopyBook['price'],1,$varCopyBook['img']);
+        codified($varCopyBook['book_id'],$varCopyBook['title'],$varCopyBook['price'],1,$varCopyBook['img'],$varCopyBook['author']);
     }
 
     function cart(){
@@ -102,17 +102,18 @@
         }
     }
 
-    function codified($id,$title,$price,$quantity,$img){
+    function codified($id,$title,$price,$quantity,$img,$author){
         $product -> img = $img;
         $product -> title = $title;
         $product -> quantity = $quantity;
         $product -> price = $price;
         $product -> user = $_SESSION['userId'];
+        $product -> author = $author;
 
         $JSONproduct = json_encode($product);
         echo "
             <script>
-                localStorage.setItem('$id','$JSONproduct')
+                localStorage.setItem('$id','$JSONproduct');
                 window.location = '../shoppingCard.php';
             </script>   
         "; 
