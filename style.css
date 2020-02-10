@@ -228,11 +228,11 @@ nav ul li a:hover {
   margin-left: -281px;
 }
 
-.focus+span::before {
+.focus + span::before {
   top: -5px;
 }
 
-.focus+span::after {
+.focus + span::after {
   width: 100%;
 }
 
@@ -290,7 +290,7 @@ nav ul li a:hover {
   justify-content: center;
 }
 
-.userId>.txtb {
+.userId > .txtb {
   display: inline-block;
 }
 
@@ -299,7 +299,7 @@ nav ul li a:hover {
   justify-content: center;
 }
 
-.totalName>.txtb {
+.totalName > .txtb {
   display: inline-block;
 }
 
@@ -308,39 +308,39 @@ nav ul li a:hover {
   justify-content: center;
 }
 
-.contact>.txtb {
+.contact > .txtb {
   display: inline-block;
 }
 
-.singup-form>.txtb {
+.singup-form > .txtb {
   border-bottom: 2px solid #adadad;
   position: relative;
   margin: 15px 0;
 }
 
-.contact>.prefix {
+.contact > .prefix {
   display: inline-block;
 }
 
-.singup-form>div>.txtb {
+.singup-form > div > .txtb {
   margin: 15px 0;
   position: relative;
   border-bottom: 2px solid #adadad;
 }
 
-.singup-form>.txtb span::after {
+.singup-form > .txtb span::after {
   margin-left: -570px;
 }
 
-.singup-form>.userId>.txtb span::after {
+.singup-form > .userId > .txtb span::after {
   margin-left: -186px;
 }
 
-.singup-form>.totalName>.txtb span::after {
+.singup-form > .totalName > .txtb span::after {
   margin-left: -186px;
 }
 
-.singup-form>.contact>.txtb span::after {
+.singup-form > .contact > .txtb span::after {
   margin-left: -187px;
 }
 
@@ -582,7 +582,7 @@ nav ul li a:hover {
   width: 100%;
 }
 
-div>.buttonBook {
+div > .buttonBook {
   display: flex;
 }
 
@@ -616,36 +616,43 @@ div>.buttonBook {
   border-radius: 40px;
 }
 
-.shoppingCart>.itemCart {
+.shoppingCart > .itemCart {
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
   margin-bottom: 5px;
 }
 
-.itemCart>.infoItem {
+.itemCart > .infoItem {
   padding: 10px;
 }
 
-.itemCart>.quanttiy {
+.itemCart > .quanttiy {
   display: flex;
   padding: 20px;
 }
 
-.quanttiy>.up-down {
+.quanttiy > .up-down {
   color: #0097f2;
   margin-right: 5px;
 }
 
 .fa-sort-up {
-  position: absolute;
+  display: block !important;
+  margin-bottom: -8.5px;
+  
 }
 
-.itemCart>.price {
+.fa-sort-down{
+  height: 5px;
+}
+
+
+.itemCart > .price {
   padding: 20px;
 }
 
-.itemCart>.deleteIcon {
+.itemCart > .deleteIcon {
   color: red;
   padding: 20px;
 }
