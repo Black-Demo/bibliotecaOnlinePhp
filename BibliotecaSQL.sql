@@ -78,6 +78,7 @@ create table cart_product(
 	id_product		int,/*id of the copy of the book*/
     title           varchar(255),
     quantity		int,
+    deleleted       boolean default false,
     date_insert		datetime default current_timestamp,/*date when you insert the product into the cart*/
     cart_id			int,
     foreign key (cart_id) references cart (id_cart) 
