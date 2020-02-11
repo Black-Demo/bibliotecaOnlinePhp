@@ -32,7 +32,7 @@ if (isset($_POST['select_book'])) {
                             else
                                $img = $book['img'];
 
-                            $ruta = $_SERVER['SERVER_NAME'].'/tuts/Biblioteca/src/userImg/'.$img | $_SERVER['SERVER_NAME'].'/bibliotecaOnlinePhp/src/userImg'.$img;
+                            $ruta = $_SERVER['SERVER_NAME'].'/tuts/Biblioteca/src/userImg/'.$img ;
                         ?>
                 <img src="<?php echo $protocol.$ruta; ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
             </div>
