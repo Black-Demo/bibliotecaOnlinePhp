@@ -15,7 +15,7 @@
 
                 //Insert a book, if this have a reference into the table only insert the language
                 //Id book whit the dates 
-                if(!($varAuthor==""||$varTitleBook==""||$varTitleBook==""||$varAuthor==""||$varEditorial==""||$varISBN==""||$varPos=="")){
+                if(!($varAuthor==""||$varTitleBook==""||$varTitleBook==""||$varAuthor==""||$varEditorial==""||$varISBN==""||$varPos==""||$varPrice=="")){
                         $final_folder =$_SERVER['DOCUMENT_ROOT']."/tuts/Biblioteca/src/userImg/";
                         move_uploaded_file($_FILES['imgBook']['tmp_name'],$final_folder.$varImg);
 

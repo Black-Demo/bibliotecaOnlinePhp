@@ -3,7 +3,7 @@ create database library;
 use  library;
 
 create table Log(
-	date_of_log		datetime,
+	date_of_log		datetime default current_timestamp,
     user			int,
     text_log		varchar(255),/*Error text*/
     error_place		varchar(255)/*Web error*/
@@ -78,7 +78,7 @@ create table cart_product(
 	id_product		int,/*id of the copy of the book*/
     title           varchar(255),
     quantity		int,
-    deleleted       boolean default false,
+    deleted       boolean default false,
     date_insert		datetime default current_timestamp,/*date when you insert the product into the cart*/
     cart_id			int,
     foreign key (cart_id) references cart (id_cart) 
