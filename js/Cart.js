@@ -20,148 +20,153 @@ function chargeCart() {
   $(currency).text("€");
   let buy = document.createElement("button");
   let returnBuy = document.createElement("button");
+  if (books.length > 0) {
+    for (let i = 0; i < books.length; i++) {
+      if (books[i].img == "") books[i].img = "no-img.jpg";
+      total += parseInt(books[i].quantity) * parseFloat(books[i].price);
+      let cont = document.createElement("div");
+      let contImg = document.createElement("div");
+      let contInfo = document.createElement("div");
+      let contQuatity = document.createElement("div");
+      let contPrice = document.createElement("div");
+      let contDelete = document.createElement("div");
 
-  for (let i = 0; i < books.length; i++) {
-    if (books[i].img == "") books[i].img = "no-img.jpg";
-    total += parseInt(books[i].quantity) * parseFloat(books[i].price);
-    let cont = document.createElement("div");
-    let contImg = document.createElement("div");
-    let contInfo = document.createElement("div");
-    let contQuatity = document.createElement("div");
-    let contPrice = document.createElement("div");
-    let contDelete = document.createElement("div");
+      let img = document.createElement("img");
+      $(img).attr({ src: "src/userImg/" + books[i].img, width: "50px" });
 
-    let img = document.createElement("img");
-    $(img).attr({ src: "src/userImg/" + books[i].img, width: "50px" });
+      let title = document.createElement("p");
+      $(title)
+        .addClass("title")
+        .text(books[i].title);
 
-    let title = document.createElement("p");
-    $(title)
-      .addClass("title")
-      .text(books[i].title);
+      let info = document.createElement("i");
+      $(info)
+        .addClass("information")
+        .text("written by: " + books[i].author);
 
-    let info = document.createElement("i");
-    $(info)
-      .addClass("information")
-      .text("written by: " + books[i].author);
+      let arrows = document.createElement("div");
+      let up = document.createElement("i");
+      $(up)
+        .addClass("fas fa-sort-up")
+        .on("click", function() {
+          books[i].quantity++;
+          $(quantity).text(books[i].quantity);
+          $(price).text(
+            (parseInt(books[i].quantity) * parseFloat(books[i].price)).toFixed(
+              2
+            ) + $(currency).text()
+          );
+          total += parseInt(books[i].price);
+          $(".totalText").text(
+            "TOTAL: " + total.toFixed(2) + $(currency).text()
+          );
+        });
+      let down = document.createElement("i");
+      $(down)
+        .addClass("fas fa-sort-down")
+        .on("click", function() {
+          if (books[i].quantity > 1) {
+            books[i].quantity--;
+            total -= parseInt(books[i].price);
+          } else deleteItem(books[i].id, i);
+          $(quantity).text(books[i].quantity);
+          $(price).text(
+            (parseInt(books[i].quantity) * parseFloat(books[i].price)).toFixed(
+              2
+            ) + $(currency).text()
+          );
 
-    let arrows = document.createElement("div");
-    let up = document.createElement("i");
-    $(up)
-      .addClass("fas fa-sort-up")
-      .on("click", function() {
-        books[i].quantity++;
-        $(quantity).text(books[i].quantity);
-        $(price).text(
-          (parseInt(books[i].quantity) * parseFloat(books[i].price)).toFixed(
-            2
-          ) + $(currency).text()
-        );
-        total += parseInt(books[i].price);
-        $(".totalText").text("TOTAL: " + total.toFixed(2) + $(currency).text());
-      });
-    let down = document.createElement("i");
-    $(down)
-      .addClass("fas fa-sort-down")
-      .on("click", function() {
-        if (books[i].quantity > 1) {
-          books[i].quantity--;
-          total -= parseInt(books[i].price);
-        } else deleteItem(books[i].id, i);
-        $(quantity).text(books[i].quantity);
-        $(price).text(
-          (parseInt(books[i].quantity) * parseFloat(books[i].price)).toFixed(
-            2
-          ) + $(currency).text()
-        );
+          $(".totalText").text(
+            "TOTAL: " + total.toFixed(2) + $(currency).text()
+          );
+        });
+      $(arrows)
+        .addClass("up-down")
+        .append([up, down]);
+      let quantity = document.createElement("i");
+      $(quantity).text(books[i].quantity);
 
-        $(".totalText").text("TOTAL: " + total.toFixed(2) + $(currency).text());
-      });
-    $(arrows)
-      .addClass("up-down")
-      .append([up, down]);
-    let quantity = document.createElement("i");
-    $(quantity).text(books[i].quantity);
+      let price = document.createElement("i");
 
-    let price = document.createElement("i");
+      $(price).text(
+        (parseInt(books[i].quantity) * parseFloat(books[i].price)).toFixed(2) +
+          $(currency).text()
+      );
 
-    $(price).text(
-      (parseInt(books[i].quantity) * parseFloat(books[i].price)).toFixed(2) +
-        $(currency).text()
-    );
+      let deleteIcon = document.createElement("i");
+      $(deleteIcon)
+        .addClass("fas fa-trash-alt")
+        .on("click", function() {
+          $("." + i).remove();
 
-    let deleteIcon = document.createElement("i");
-    $(deleteIcon)
-      .addClass("fas fa-trash-alt")
-      .on("click", function() {
-        $("." + i).remove();
+          localStorage.removeItem("" + books[i].id);
 
-        localStorage.removeItem("" + books[i].id);
+          let bookDeleted = new FormData();
+          bookDeleted.append("id", books[i].id);
 
-        let bookDeleted = new FormData();
-        bookDeleted.append("id", books[i].id);
+          fetch("cart/db_delete_itemCart.php", {
+            method: "POST",
+            body: bookDeleted
+          });
 
-        fetch("cart/db_delete_itemCart.php", {
-          method: "POST",
-          body: bookDeleted
+          getProdcuts();
+          if (books.length <= 0) $(".total").remove();
         });
 
-        getProdcuts();
-        if (books.length <= 0) $(".total").remove();
+      let otherItem = document.createElement("div");
+      $(otherItem).attr({ class: "otherItem " + i });
+
+      $(contImg)
+        .addClass("img")
+        .append(img);
+      $(contInfo)
+        .addClass("infoItem")
+        .append([title, info]);
+      $(contQuatity)
+        .addClass("quantity")
+        .append([arrows, quantity]);
+      $(contPrice)
+        .addClass("price")
+        .append(price);
+      $(contDelete)
+        .addClass("deleteIcon")
+        .append(deleteIcon);
+
+      $(cont)
+        .addClass("itemCart " + i)
+        .append([contImg, contInfo, contQuatity, contPrice, contDelete]);
+      $(document.body)
+        .find(".shoppingCart")
+        .append([cont, otherItem]);
+    }
+    $(buy)
+      .attr({ class: "buy" })
+      .text("finish")
+      .on("click", checkDataBook);
+
+    $(returnBuy)
+      .attr("class", "return")
+      .text("return shopping")
+      .on("click", function() {
+        window.location = "index.php";
       });
 
-    let otherItem = document.createElement("div");
-    $(otherItem).attr({ class: "otherItem " + i });
+    $(contBuy)
+      .addClass("buttonPanel")
+      .append([returnBuy, buy]);
 
-    $(contImg)
-      .addClass("img")
-      .append(img);
-    $(contInfo)
-      .addClass("infoItem")
-      .append([title, info]);
-    $(contQuatity)
-      .addClass("quantity")
-      .append([arrows, quantity]);
-    $(contPrice)
-      .addClass("price")
-      .append(price);
-    $(contDelete)
-      .addClass("deleteIcon")
-      .append(deleteIcon);
+    $(textTotal)
+      .addClass("totalText")
+      .text("TOTAL: " + total.toFixed(2) + $(currency).text());
 
-    $(cont)
-      .addClass("itemCart " + i)
-      .append([contImg, contInfo, contQuatity, contPrice, contDelete]);
+    $(contTotal)
+      .addClass("total")
+      .append([returnBuy, buy, textTotal]);
+
     $(document.body)
       .find(".shoppingCart")
-      .append([cont, otherItem]);
+      .append(contTotal);
   }
-  $(buy)
-    .attr({ class: "buy" })
-    .text("finish")
-    .on("click", checkDataBook);
-
-  $(returnBuy)
-    .attr("class", "return")
-    .text("return shopping")
-    .on("click", function() {
-      window.location = "index.php";
-    });
-
-  $(contBuy)
-    .addClass("buttonPanel")
-    .append([returnBuy, buy]);
-
-  $(textTotal)
-    .addClass("totalText")
-    .text("TOTAL: " + total.toFixed(2) + $(currency).text());
-
-  $(contTotal)
-    .addClass("total")
-    .append([returnBuy, buy, textTotal]);
-
-  $(document.body)
-    .find(".shoppingCart")
-    .append(contTotal);
 }
 
 function deleteItem(id, pos) {
@@ -207,14 +212,13 @@ function changeData(id, price, quantity, title) {
   actualBook.quantity = quantity;
   actualBook.price = price;
   localStorage.setItem(id, JSON.stringify(actualBook));
-  // $(".itemCart , .otherItem, .total").remove();
-  // getProdcuts();
-  // chargeCart();
+  $(".itemCart , .otherItem, .total").remove();
+  getProdcuts();
+  chargeCart();
 }
 
 function finishShop() {
   if (confirm("Do you wanna finish the cart?")) {
-    //localStorage.clear();
     $(".itemCart").each(function() {
       let $item = $(this);
       let itemData = new FormData();
@@ -232,10 +236,16 @@ function finishShop() {
         body: itemData
       })
         .then(x => x.json())
-        .then(x => console.log(x));
+        .then(x => {
+          if (x == "yes") {
+            localStorage.clear();
+            getProdcuts();
+            chargeCart();
+          } else {
+            alert("Error al reservar tu libro");
+          }
+        });
     });
-    //getProdcuts();
-    //chargeCart();
   }
 }
 

@@ -20,8 +20,14 @@ if (mysqli_stmt_prepare($stmt, $selectBook)) {
             $result->price = $row['price'];
 
             echo json_encode($result);
-        } else {
-            echo json_encode("true");
+        } else if ($quantity <= $row['quantity']){
+            $result->correct = "true";
+            $result->id = $id;
+            $result->title = $row['title'];
+            $result->quantity = $quantity;
+            $result->price = $row['price'];
+            
+            echo json_encode($result);
         }
     }
 }
