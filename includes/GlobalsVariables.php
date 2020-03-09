@@ -47,5 +47,6 @@
         "French",
         "Other"];
 
-
+/*------------------------API Key Weather-----------------------*/
+    $apikey = "8XkAho5n82UpG86HfrBc2UFaae5UVPn3";
 ?>

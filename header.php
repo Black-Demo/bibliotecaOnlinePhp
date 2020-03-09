@@ -7,14 +7,14 @@
 
 <head>
     <title>Library</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <script src="https://kit.fontawesome.com/101380c162.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="js\formStyle.js" async></script>
-    <script src="js\cart.js" async></script>
+    <script src="script\formStyle.js" async></script>
+    <script src="script\cart.js" async></script>
 </head>
 
 <body>
@@ -25,6 +25,7 @@
         <nav class="nav header main">
             <ul>
                 <li><a href="index.php">Home</a></li>
+                <li><a href="acuWeather.php">The Time</a></li>
                 <?php if(isset($_SESSION['userId'])){ ?>
                 <li><a href="myUniverse.php">My universe</a></li>
                 <?php
